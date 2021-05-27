@@ -8,4 +8,5 @@ urlpatterns = [
     path('tramites/',include('tramites.urls')),
     path('beneficiarios/', include('beneficiarios.urls')),
     path('empleados/',include('empleados.urls')),
+    path('localizacion-personas/',include('localizacion_personas.urls')),
 ]
