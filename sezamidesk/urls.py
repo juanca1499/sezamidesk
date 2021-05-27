@@ -7,5 +7,5 @@ urlpatterns = [
     path('apostillas/',include('apostillas.urls')),
     path('tramites/',include('tramites.urls')),
     path('beneficiarios/', include('beneficiarios.urls')),
-    path('empleados/' include('empleados.urls')),
+    path('empleados/',include('empleados.urls')),
 ]
