@@ -8,3 +8,4 @@ class Apostilla(models.Model):
     comprobante_domicilio = models.BooleanField('Comprobante de domicilio',default=False)
     rfc = models.BooleanField('RFC',default=False)
     tramite = models.ForeignKey('tramites.Tramite',verbose_name='Tramite',on_delete=models.CASCADE)
+    #
