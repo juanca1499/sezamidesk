@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>{% block titulo %} {% endblock titulo %}</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <!-- CSS Styles -->
 
@@ -123,11 +123,12 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
-                        {% block titulo %} {% endblock titulo %}
-                            
+                    <div class="container-fluid px-4">    
+                        <h1 class="mt-4">
+                            {% block encabezado %} {% endblock encabezado %}
+                        </h1>
                         {% block contenido %} {% endblock contenido %}
-                        <!-- <h1 class="mt-4">Dashboard</h1> -->
+                        
                         <!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol> -->
