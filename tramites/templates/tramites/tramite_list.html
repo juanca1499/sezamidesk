@@ -3,13 +3,57 @@
 
 
 {% block titulo %}
-    Lista de tramites.
+    Lista de trámites
 {% endblock titulo %}
+
+{% block encabezado %}
+    Lista de trámites
+{% endblock encabezado %}
+
 
 {% block contenido %}
 
-<p class="text-right">
-    Hola Esta es una prueba
-</p>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Trámites
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Beneficiario</th>
+                    <th>Empleado</th>
+                    <th>Estado</th>
+                    <th>Fecha de inicio</th>
+                    <th>Fecha de finalización</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Beneficiario</th>
+                    <th>Empleado</th>
+                    <th>Estado</th>
+                    <th>Fecha de inicio</th>
+                    <th>Fecha de finalización</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for tramite in object_list %}
+                    <tr>
+                        <td>{{tramite.beneficiario}}</td>
+                        <td>{{tramite.empleado}}</td>
+                        <td>{{tramite.estado}}</td>
+                        <td>{{tramite.fecha_inicio}}</td>
+                        <td>{{tramite.fecha_fin}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</div>
 
 {% endblock contenido %}

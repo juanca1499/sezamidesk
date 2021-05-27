@@ -8,5 +8,5 @@ class TramiteList(ListView):
     model = Tramite
     template_name= 'tramites/tramite_list.html'
 
-    def get(self, request, *args, **kwargs):
-        lista_grupos = Tramite.objects.all()
+    #def get(self, request, *args, **kwargs):
+    #    lista_grupos = Tramite.objects.all()
