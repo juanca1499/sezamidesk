@@ -1,5 +1,55 @@
 {% extends 'base.html' %}
 
 {% block contenido %}
-    <h1>Hola mundo</h1>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Lista de Empleados
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre(s)</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Alias</th>
+                    <th>Teléfono</th>
+                    <th>Nombre de usuario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre(s)</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Alias</th>
+                    <th>Teléfono</th>
+                    <th>Nombre de usuario</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for empleado in object_list  %}
+                    <tr>
+                        <td>{{empleado.id}}</td>
+                        <td>{{empleado.first_name}}</td>
+                        <td>{{empleado.last_name}}</td>
+                        <td>{{empleado.segundo_apellido}}</td>
+                        <td>{{empleado.alias}}</td>
+                        <td>{{empleado.telefono}}</td>
+                        <td>{{empleado.username}}</td>
+                        <td>
+                            <a href="" class="btn btn-info">Ver</a>
+                            <a href="" class="btn btn-warning">Editar</a>
+                            <a href="" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock contenido %}
