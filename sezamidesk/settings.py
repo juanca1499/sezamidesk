@@ -27,6 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalogos',
+    'apostillas',
+    'atencion_migrantes',
+    'beneficiarios',
+    'empleados',
+    'localizacion_personas',
+    'tramites',
+    'visas'
 ]
 
 MIDDLEWARE = [
