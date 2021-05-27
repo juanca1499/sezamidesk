@@ -6,6 +6,6 @@ from . import views
 app_name = 'tramites'
 
 urlpatterns = [
-    #path('index/', views.CatalogoGeneral.as_view(), name = 'index')
+    path('lista/', views.TramiteList.as_view(), name = 'lista_tramite')
 ]
 
