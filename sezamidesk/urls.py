@@ -9,4 +9,5 @@ urlpatterns = [
     path('beneficiarios/', include('beneficiarios.urls')),
     path('empleados/',include('empleados.urls')),
     path('localizacion-personas/',include('localizacion_personas.urls')),
+    path('atencion-migrantes/',include('atencion_migrantes.urls')),
 ]
