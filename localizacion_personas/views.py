@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
+from .models import PersonaDesaparecida
 
 class ListaPersonasDesaparecidas(PermissionRequiredMixin,ListView):
     model = PersonaDesaparecida
@@ -20,5 +21,5 @@ class EditarPersonaDesaparecida(PermissionRequiredMixin,UpdateView):
     extra_context = {'etiqueta':'Actualizar','boton':'Guardar'}
     success_url = reverse_lazy('localizacion_personas:lista')
 
-class Detalle(PermissionRequiredMixin,DetailView):
+class DetallePersonaDesaparecida(PermissionRequiredMixin,DetailView):
     model = PersonaDesaparecida
