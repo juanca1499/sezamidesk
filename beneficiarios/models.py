@@ -4,12 +4,13 @@ from django.core.validators import RegexValidator
 # Create your models here.
 # Test commit
 class Beneficiario(models.Model):
-    
+    # DATOS PERSONALES
     curp = models.CharField("CURP", primary_key = True, max_length=18, validators=[RegexValidator('([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)')])
     primer_apellido = models.CharField("Primer apellido", max_length=50)
     segundo_apellido = models.CharField("Segundo apellido", max_length=50)
     nombre = models.CharField("Nombre(s)", max_length=50)
     identificacion = models.ForeignKey("catalogos.IdentificacionOficial", verbose_name="Identificación Oficial", on_delete=models.CASCADE)
+    
     tipo_vialidad = models.ForeignKey("catalogos.TipoVialidad", verbose_name="Tipo de vialidad", on_delete=models.CASCADE)
     nombre_vialidad = models.CharField("Vialidad", max_length=50)
     numero_exterior = models.IntegerField("Número exterior")
@@ -34,7 +35,9 @@ class Beneficiario(models.Model):
     vivienda_internet = models.BooleanField("Internet", default = False)
     nivel_estudios = models.ForeignKey("catalogos.NivelEstudios", verbose_name="Nivel de estudios", on_delete=models.CASCADE)
     tipo_seguridad_social = models.ForeignKey("catalogos.TipoSeguridadSocial", verbose_name="Tipo de seguridad social", on_delete=models.CASCADE)
+    # DATOS PERSONALES
     discapacidad = models.ForeignKey("catalogos.Discapacidad", verbose_name="Discapacidad", on_delete=models.CASCADE)
+    # DATOS PERSONALES
     grupo_vulnerable = models.ForeignKey("catalogos.GrupoVulnerable", verbose_name="Grupo vulnerable", on_delete=models.CASCADE)
     beneficiario_colectivo = models.BooleanField("Es beneficiario colectivo", default = False)
     

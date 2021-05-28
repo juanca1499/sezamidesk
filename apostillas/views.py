@@ -9,7 +9,10 @@ from .forms import ApostillaForm
 
 class ListaApostilla(ListView):
     model = Apostilla
-    lista_grupos = Apostilla.objects.all()
+    template_name = 'apostillas/apostilla_list.html'
+    def get(self, request, *args, **kwargs):
+        apostillas = Apostilla.objects.all()
+        return render(request, self.template_name, {'apostillas': apostillas})
 
 class NuevaApostilla(CreateView):
     model = Apostilla
