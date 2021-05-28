@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from .models import Apostilla
+from .forms import ApostillaForm
 
 class ListaApostilla(ListView):
     model = Apostilla
@@ -12,6 +13,7 @@ class ListaApostilla(ListView):
 
 class NuevaApostilla(CreateView):
     model = Apostilla
+    form_class = ApostillaForm
     success_url = reverse_lazy('apostillas:lista')
 
 class DetalleApostilla(DetailView):
