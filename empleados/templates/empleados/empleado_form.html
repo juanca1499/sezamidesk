@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+{{ etiqueta }}
+{% endblock titulo %}
+
+{% block encabezado %}
+{{ etiqueta }} empleado
+{% endblock encabezado %}
+
+{% block contenido %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">{{ btn }}</button>
+    </form>
+{% endblock contenido %}
