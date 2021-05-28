@@ -23,9 +23,8 @@
                         <th>CURP</th>
                         <th>Comprobante de domicilio</th>
                         <th>RFC</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha fin</th>
                         <th>Estado del tramite</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -37,9 +36,8 @@
                         <th>CURP</th>
                         <th>Comprobante de domicilio</th>
                         <th>RFC</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha fin</th>
                         <th>Estado del tramite</th>
+                        <th>Opciones</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -88,9 +86,10 @@
                                     No entregado
                                 {% endif %}
                             </td>
-                            <td>{{apostilla.tramite.fecha_inicio}}</td>
-                            <td>{{apostilla.tramite.fecha_fin}}</td>
                             <td>{{apostilla.tramite.estado}}</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm"" href="{% url 'apostillas:detalle' apostilla.id %}">Ver más</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

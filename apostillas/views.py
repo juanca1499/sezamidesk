@@ -21,6 +21,11 @@ class NuevaApostilla(CreateView):
 
 class DetalleApostilla(DetailView):
     model = Apostilla
+    template_name = 'apostillas/apostilla_detail.html'
+
+    def get(self, request, *args, **kwargs):
+        apostilla = get_object_or_404(Apostilla,id=kwargs['pk'])
+        return render(request, self.template_name, {'apostilla': apostilla})
 
 class EditarApostilla(UpdateView):
     model = Apostilla
