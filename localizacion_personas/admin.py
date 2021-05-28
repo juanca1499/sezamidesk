@@ -4,3 +4,4 @@ from .models import *
 
 
 admin.site.register(PersonaDesaparecida)
+admin.site.register(Estatus)
