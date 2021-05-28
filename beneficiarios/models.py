@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 # Test commit
 class Beneficiario(models.Model):
     
-    curp = models.CharField("CURP", primary_key = True, max_length=18, validators=[RegexValidator(r'/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/')])
+    curp = models.CharField("CURP", primary_key = True, max_length=18, validators=[RegexValidator('([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)')])
     primer_apellido = models.CharField("Primer apellido", max_length=50)
     segundo_apellido = models.CharField("Segundo apellido", max_length=50)
     nombre = models.CharField("Nombre(s)", max_length=50)
