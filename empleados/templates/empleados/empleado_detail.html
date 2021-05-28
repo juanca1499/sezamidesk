@@ -1,14 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block titulo %}
-    Detalle de Empleado
-{% endblock titulo %}
+    Empleado
+{% endblock %}
 
-{% block encabezado %}
-    Detalle de Empleado
-{% endblock encabezado %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} 
+Detalle de Empleado
+{% endblock %}
 
 {% block contenido %}
+    <div class="col-xs-3">
+        <a href="{% url 'empleados:lista' %}" class="btn btn-primary">Regresar</a>
+        <a href="" class="btn btn-secondary">Modificar</a>
+        <a href="" class="btn btn-danger">Eliminar</a>
+    </div>
     
-    <a href="{% url 'empleados:lista' %}">Regresar</a>
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos del Empleado</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Nombre(s): </b>{{object.first_name}}</p>
+            <p><b>Primer apellido: </b> {{object.last_name}}</p>
+            <p><b>Segundo apellido: </b> {{object.segundo_apellido}}</p>
+            <p><b>Alias: </b>{{object.alias}}</p>
+            <p><b>Teléfono: </b>{{object.telefono}}</p>
+            <p><b>Grupo: </b>{{object.grupo}}</p>
+        </section>
+    </div> 
 {% endblock contenido %}

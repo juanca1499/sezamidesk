@@ -5,7 +5,11 @@
 {% block titulo %}
 Permisos de {{ grupo.grupo }}
 {% endblock titulo %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">  
+{% endblock css %}
+
 {% block encabezado %}
 Permisos de {{ grupo.grupo }}
 {% endblock encabezado %}
