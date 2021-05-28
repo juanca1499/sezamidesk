@@ -2,13 +2,16 @@ from django import forms
 from .models import PersonaDesaparecida
 from django.core.validators import RegexValidator
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class PersonaDesaparecidaForm(forms.ModelForm):
+    fecha_nacimiento_desaparecido = forms.DateField(widget=DateInput())
     class Meta:
         model = PersonaDesaparecida
         fields = '__all__'
         widgets = {
-                'curp':forms.TextInput(attrs={'class':'form-control', 'placeholder':'CURP de la persona a localizar','onFocus':'validar(this)'}),
+                'curp':forms.TextInput(attrs={'class':'form-control','onFocus':'validar(this)'}),
                 'nombre_desaparecido':forms.TextInput(attrs={'class':'form-control'}),
                 'apellido_paterno_desaparecido':forms.TextInput(attrs={'class':'form-control'}),
                 'apellido_materno_desaparecido':forms.TextInput(attrs={'class':'form-control'}),
