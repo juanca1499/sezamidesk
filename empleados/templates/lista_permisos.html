@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Permisos de {{ grupo.grupo }}
+{% endblock titulo %}
+
+{% block encabezado %}
+Permisos de {{ grupo.grupo }}
+{% endblock encabezado %}
+
+{% block contenido %}
+<form action="{% url 'empleados:agrega-permisos' empleado.id %}" method="POST">
+    <table class="table">
+        <thead>
+            <th>Permiso</th>
+            <th>Habiliado</th>
+        </thead>
+        <tbody>
+            <div>
+                {% for permiso in permisos %}
+                    <tr>
+                        <td>
+                            {{permiso.name}}
+                        </td>
+                        <td>
+                            
+                                <input type="checkbox" name="{{grupo.id}}">
+                            
+                        </td>
+                </tr>
+                {% endfor %}
+            </div>
+        </tbody>
+    </table>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock contenido %}
