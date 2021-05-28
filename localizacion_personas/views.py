@@ -15,13 +15,13 @@ class ListaPersonasDesaparecidas(ListView):
 class AgregarPersonaDesaparecida(CreateView):
     model = PersonaDesaparecida
     form_class = PersonaDesaparecidaForm
-    extra_context = {'etiqueta':'Agregar','boton':'Agregar', 'lp_nuevo':True}
+    extra_context = {'etiqueta':'Registrar','boton':'Registrar', 'lp_nuevo':True}
     success_url = reverse_lazy('localizacion_personas:lista')
 
 class EditarPersonaDesaparecida(UpdateView):
     model = PersonaDesaparecida
     form_class = PersonaDesaparecidaForm
-    extra_context = {'etiqueta':'Actualizar','boton':'Guardar'}
+    extra_context = {'etiqueta':'Actualizar datos','boton':'Guardar'}
     success_url = reverse_lazy('localizacion_personas:lista')
 
 class DetallePersonaDesaparecida(DetailView):
