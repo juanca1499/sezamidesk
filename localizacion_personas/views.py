@@ -5,21 +5,24 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from .models import PersonaDesaparecida
+from .form import PersonaDesaparecidaForm
 
-class ListaPersonasDesaparecidas(PermissionRequiredMixin,ListView):
+class ListaPersonasDesaparecidas(ListView):
     model = PersonaDesaparecida
-    paginate_by = 5
+    context_object_name = 'personas'
     extra_context = {'lp_lista':True}
 
-class AgregarPersonaDesaparecida(PermissionRequiredMixin,CreateView):
+class AgregarPersonaDesaparecida(CreateView):
     model = PersonaDesaparecida
+    form_class = PersonaDesaparecidaForm
     extra_context = {'etiqueta':'Nuevo','boton':'Agregar', 'lp_nuevo':True}
     success_url = reverse_lazy('localizacion_personas:lista')
 
-class EditarPersonaDesaparecida(PermissionRequiredMixin,UpdateView):
+class EditarPersonaDesaparecida(UpdateView):
     model = PersonaDesaparecida
+    form_class = PersonaDesaparecidaForm
     extra_context = {'etiqueta':'Actualizar','boton':'Guardar'}
     success_url = reverse_lazy('localizacion_personas:lista')
 
-class DetallePersonaDesaparecida(PermissionRequiredMixin,DetailView):
+class DetallePersonaDesaparecida(DetailView):
     model = PersonaDesaparecida

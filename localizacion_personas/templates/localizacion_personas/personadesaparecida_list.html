@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Localización de Personas
+{% endblock %}
+
+{% block encabezado %} Lista de Personas a Localizar {% endblock %}
+{% block contenido %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Información de las personas a localizar
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>CURP</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Fecha de desaparición</th>
+                        <th>Estatus</th>
+                        <th>Nombre del solicitante</th>
+                        <th>Apellidos del solicitante</th>
+                        <th>Telefono del solicitante</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>CURP</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Fecha de desaparición</th>
+                        <th>Estatus</th>
+                        <th>Nombre del solicitante</th>
+                        <th>Apellidos del solicitante</th>
+                        <th>Telefono del solicitante</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for persona in personas %}
+                        <tr>
+                            <td>{{persona.curp}}</td>
+                            <td>{{persona.nombre_desaparecido}}</td>
+                            <td>{{persona.apellido_paterno_desaparecido}} {{persona.apellido_materno_desaparecido}}</td>
+                            <td>{{persona.fecha_desaparicion}}</td>
+                            <td>{{persona.estatus}}</td>
+                            <td>{{persona.nombre_solicitante}}</td>
+                            <td>{{persona.apellido_paterno_solicitante}} {{persona.apellido_materno_solicitante}}</td>
+                            <td>{{persona.tramite.telefono_solicitante}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
