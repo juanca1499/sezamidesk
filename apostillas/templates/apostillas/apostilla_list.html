@@ -23,10 +23,8 @@
                         <th>CURP</th>
                         <th>Comprobante de domicilio</th>
                         <th>RFC</th>
-                        <th>Comprobante de domicilio</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha fin</th>
                         <th>Estado del tramite</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -38,24 +36,60 @@
                         <th>CURP</th>
                         <th>Comprobante de domicilio</th>
                         <th>RFC</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha fin</th>
                         <th>Estado del tramite</th>
+                        <th>Opciones</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     {% for apostilla in apostillas %}
                         <tr>
-                            <td>{{apostilla.beneficiario.nombres}}</td>
-                            <td>{{apostilla.acta_americana}}</td>
-                            <td>{{apostilla.acta_mexicana}}</td>
-                            <td>{{apostilla.identificacion_padres}}</td>
-                            <td>{{apostilla.curp}}</td>
-                            <td>{{apostilla.comprobante_domicilio}}</td>
-                            <td>{{apostilla.rfc}}</td>
-                            <td>{{apostilla.tramite.fecha_inicio}}</td>
-                            <td>{{apostilla.tramite.fecha_fin}}</td>
+                            <td>{{apostilla.tramite.beneficiario.nombre}}</td>
+                            <td>
+                                {% if apostilla.acta_americana == true %}
+                                    Entregada
+                                {% else %}
+                                    No entregada
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if apostilla.acta_mexicana == true %}
+                                    Entregada
+                                {% else %}
+                                    No entregada
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if apostilla.identificacion_padres == true %}
+                                    Entregada
+                                {% else %}
+                                    No entregada
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if apostilla.curp == true %}
+                                    Entregada
+                                {% else %}
+                                    No entregada
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if apostilla.comprobante_domicilio == true %}
+                                    Entregado
+                                {% else %}
+                                    No entregado
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if apostilla.rfc == true %}
+                                    Entregado
+                                {% else %}
+                                    No entregado
+                                {% endif %}
+                            </td>
                             <td>{{apostilla.tramite.estado}}</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm"" href="{% url 'apostillas:detalle' apostilla.id %}">Ver más</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

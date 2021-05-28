@@ -5,4 +5,5 @@ app_name = 'beneficiarios'
 
 urlpatterns = [
     path('', views.BeneficiariosPrincipal.as_view(), name = 'principal'),
+    path('detalle/<str:pk>', views.BeneficiariosDetalle.as_view(), name = 'detalle'),
 ]
