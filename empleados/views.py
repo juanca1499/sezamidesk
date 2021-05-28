@@ -3,7 +3,7 @@ from django.urls.base import reverse
 from empleados.models import Empleado,Grupo
 from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView,UpdateView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
@@ -29,6 +29,10 @@ class NuevoEmpleado(CreateView):
 
 class DetalleEmpleado(DetailView):
     model = Empleado
+
+class EliminarEmpleado(DeleteView):
+    model = Empleado
+    success_url=reverse_lazy('empleado:lista')
 
 def permisos(request, pk):
     empleado = get_object_or_404(Empleado,pk=pk)

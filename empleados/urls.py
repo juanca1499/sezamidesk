@@ -9,4 +9,5 @@ urlpatterns = [
     path('detalle/<int:pk>', views.DetalleEmpleado.as_view(), name='detalle'),
     path('permisos/<int:pk>', views.permisos, name='permisos'),
     path('agrega-permisos/<int:pk>', views.agregaPermiso, name='agrega-permisos'),
+    path('eliminar/<int:pk>', views.EliminarEmpleado.as_view(), name='eliminar'),
 ]

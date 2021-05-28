@@ -17,7 +17,7 @@ Detalle de Empleado
     <div class="col-xs-3">
         <a href="{% url 'empleados:lista' %}" class="btn btn-primary">Regresar</a>
         <a href="" class="btn btn-secondary">Modificar</a>
-        <a href="" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'empleados:eliminar' object.id %}" class="btn btn-danger">Eliminar</a>
     </div>
     
     <div id="svg_wrap">
