@@ -21,7 +21,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">SEZAMI Desk</a>
+            <a class="navbar-brand ps-3" href="tramites:lista_tramite">SEZAMI Desk</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -50,7 +50,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{% url 'tramites:lista_tramite' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -62,15 +62,15 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Apostillas</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Visas</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Pasaporte y Seguro Social Americano</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Corazón de Plata</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Ferias binacionales</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Atención a migrantes deportados y repatriados</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Traslado de cuerpos</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Localización de personas</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Administración de usuarios</a>
+                                    <a class="nav-link" href="{% url 'apostillas:lista' %}">Apostillas</a>
+                                    <a class="nav-link" href="#">Visas</a>
+                                    <a class="nav-link" href="#">Pasaporte y Seguro Social Americano</a>
+                                    <a class="nav-link" href="#">Corazón de Plata</a>
+                                    <a class="nav-link" href="#">Ferias binacionales</a>
+                                    <a class="nav-link" href="{% url 'atencion_migrantes:principal' %}">Atención a migrantes deportados y repatriados</a>
+                                    <a class="nav-link" href="#">Traslado de cuerpos</a>
+                                    <a class="nav-link" href="{% url 'localizacion_personas:lista' %}">Localización de personas</a>
+                                    <a class="nav-link" href="#">Administración de usuarios</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
