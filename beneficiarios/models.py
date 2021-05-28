@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 # Test commit
 class Beneficiario(models.Model):
     
-    curp = models.CharField("CURP", primary_key = True, max_length=18, validators=[RegexValidator(r'/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/')])
+    curp = models.CharField("CURP", primary_key = True, max_length=18, validators=[RegexValidator('([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)')])
     primer_apellido = models.CharField("Primer apellido", max_length=50)
     segundo_apellido = models.CharField("Segundo apellido", max_length=50)
     nombre = models.CharField("Nombre(s)", max_length=50)
@@ -13,10 +13,10 @@ class Beneficiario(models.Model):
     tipo_vialidad = models.ForeignKey("catalogos.TipoVialidad", verbose_name="Tipo de vialidad", on_delete=models.CASCADE)
     nombre_vialidad = models.CharField("Vialidad", max_length=50)
     numero_exterior = models.IntegerField("Número exterior")
-    numero_interior = models.IntegerField("Número interior")
+    numero_interior = models.IntegerField("Número interior", null = True, blank = True)
     asentamiento = models.ForeignKey("catalogos.Asentamiento", verbose_name="Asentamiento", on_delete=models.CASCADE)
     entre_vialidades = models.CharField("Entre vialidades", max_length=50)
-    descripcion_ubicacion = models.TextField("Referencias de ubicación")
+    descripcion_ubicacion = models.TextField("Referencias de ubicación", blank = True)
     estudio_socioeconomico = models.BooleanField("Presentó estudio socioeconómico")
     estado_civil = models.ForeignKey("catalogos.EstadoCivil", verbose_name="Estado civíl", on_delete=models.CASCADE)
     jefe_familia = models.BooleanField("Es jefe de familia")

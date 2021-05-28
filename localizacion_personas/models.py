@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 class PersonaDesaparecida(models.Model):
-    curp = models.CharField('CURP de la persona desaparecida',primary_key=True,max_length=18,validators=[RegexValidator(r'/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/')])
+    curp = models.CharField('CURP de la persona desaparecida',primary_key=True,max_length=18,validators=[RegexValidator('([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)')])
     nombre_desaparecido = models.CharField('Nombre de la persona desaparecida',max_length=50)
     apellido_paterno_desaparecido = models.CharField('Apellido paterno de la persona desaparecida',max_length=50)
     apellido_materno_desaparecido = models.CharField('Apellido materno de la persona desaparecida',max_length=50,blank=True, null=True)

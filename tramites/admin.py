@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Tramite,EstadoTramite
 
-# Register your models here.
+admin.site.register(Tramite)
+admin.site.register(EstadoTramite)
+
