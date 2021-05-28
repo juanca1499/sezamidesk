@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group
 from django.urls.base import reverse
 from empleados.models import Empleado,Grupo
 from django.shortcuts import redirect, render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -27,6 +27,9 @@ class NuevoEmpleado(CreateView):
         user = form.save(commit=False)
         return super().form_valid(form)
 
+class DetalleEmpleado(DetailView):
+    model = Empleado
+
 def permisos(request, pk):
     empleado = get_object_or_404(Empleado,pk=pk)
     grupo = get_object_or_404(Grupo,grupo=empleado.grupo)
@@ -42,12 +45,11 @@ def permisos(request, pk):
 
 def agregaPermiso(request, pk):
     empleado = Empleado.objects.get(id=pk)
-    grupos = [grupo.id for grupo in Group.objects.all()]
+    groups = Group.objects.all()
+    empleado.groups.clear()
+    for item in request.POST:
+        if request.POST[item] == 'on':
+            empleado.groups.add(Group.objects.get(id=int(item)))
 
-    if len(request.POST) > 1: 
-        empleado.groups.clear()
-        for item in request.POST:
-            if request.POST[item] == 'on':
-                empleado.groups.add(Group.objects.get(id=int(item)))
     return redirect('empleados:lista')
 

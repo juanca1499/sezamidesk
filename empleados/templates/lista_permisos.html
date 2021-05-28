@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 {% block titulo %}
 Permisos de {{ grupo.grupo }}
 {% endblock titulo %}
-
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% block encabezado %}
 Permisos de {{ grupo.grupo }}
 {% endblock encabezado %}
@@ -25,7 +25,7 @@ Permisos de {{ grupo.grupo }}
                         </td>
                         <td>
                             <label class="switch" >
-                                <input type="checkbox" name='{{grupo.id}}'>
+                                <input type="checkbox" name='{{permiso.id}}'>
                                 <span class="slider round"></span>
                             </label>
                         </td>
