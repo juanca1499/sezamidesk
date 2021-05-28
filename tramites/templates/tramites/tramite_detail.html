@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Detalle del trámite
+{% endblock titulo %}
+
+{% block contenido %}
+    <h3>{{tramite.beneficiario}}</h3>
+    <hr>
+    <h3>{{tramite.empleado}}</h3>
+    <h3>{{tramite.estado}}</h3>
+    <h3>{{tramite.fecha_inicio}}</h3>
+    <h3>{{tramite.fecha_fin}}</h3>
+
+    <a type="button" class="btn btn-primary" href="{% url 'tramites:lista_tramite' %}">Regresar</a>
+    
+{% endblock contenido %}
