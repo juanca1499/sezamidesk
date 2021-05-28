@@ -9,4 +9,7 @@ class AtencionMigrantes(models.Model):
     hoja_deportacion = models.BooleanField("Hoja de deportación")
     comprobante_domicilio = models.BooleanField("Comprobante de domicilio")
     acta_nacimiento = models.BooleanField("Comprobante de domicilio")
-    status = models.ForeignKey("tramites.EstadoTramite", verbose_name="Estado del trámite", on_delete=models.CASCADE)
+    
+    # Foreign keys
+    tramite = models.ForeignKey("tramites.Tramite", verbose_name="Trámite", on_delete=models.CASCADE)
+

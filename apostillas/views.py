@@ -6,23 +6,21 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from .models import Apostilla
 
-class ListaApostilla(PermissionRequiredMixin,ListView):
+class ListaApostilla(ListView):
     model = Apostilla
+    lista_grupos = Apostilla.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        lista_grupos = Apostilla.objects.all()
-
-class NuevaApostilla(PermissionRequiredMixin,CreateView):
+class NuevaApostilla(CreateView):
     model = Apostilla
     success_url = reverse_lazy('apostillas:lista')
 
-class DetalleApostilla(PermissionRequiredMixin,DetailView):
+class DetalleApostilla(DetailView):
     model = Apostilla
 
-class EditarApostilla(PermissionRequiredMixin,UpdateView):
+class EditarApostilla(UpdateView):
     model = Apostilla
     success_url = reverse_lazy('apostillas:lista')
 
-class EliminarApostilla(PermissionRequiredMixin,DeleteView):
+class EliminarApostilla(DeleteView):
     model = Apostilla
     success_url = reverse_lazy('apostillas:lista')
