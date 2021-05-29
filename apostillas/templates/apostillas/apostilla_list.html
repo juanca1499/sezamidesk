@@ -45,42 +45,42 @@
                         <tr>
                             <td>{{apostilla.tramite.beneficiario.nombre}}</td>
                             <td>
-                                {% if apostilla.acta_americana == true %}
+                                {% if apostilla.acta_americana == 1 %}
                                     Entregada
                                 {% else %}
                                     No entregada
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.acta_mexicana == true %}
+                                {% if apostilla.acta_mexicana == 1 %}
                                     Entregada
                                 {% else %}
                                     No entregada
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.identificacion_padres == true %}
+                                {% if apostilla.identificacion_padres == 1 %}
                                     Entregada
                                 {% else %}
                                     No entregada
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.curp == true %}
+                                {% if apostilla.curp == 1 %}
                                     Entregada
                                 {% else %}
                                     No entregada
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.comprobante_domicilio == true %}
+                                {% if apostilla.comprobante_domicilio == 1 %}
                                     Entregado
                                 {% else %}
                                     No entregado
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.rfc == true %}
+                                {% if apostilla.rfc == 1 %}
                                     Entregado
                                 {% else %}
                                     No entregado
@@ -88,7 +88,10 @@
                             </td>
                             <td>{{apostilla.tramite.estado}}</td>
                             <td>
-                                <a class="btn btn-primary btn-sm"" href="{% url 'apostillas:detalle' apostilla.id %}">Ver más</a>
+                                <a class="btn btn-success btn-sm" href="{% url 'apostillas:nueva' %}">Nueva</a>
+                                <a class="btn btn-secondary btn-sm" href="{% url 'apostillas:detalle' apostilla.id %}">Ver más</a>
+                                <a class="btn btn-warning btn-sm" href="{% url 'apostillas:editar' apostilla.id %}">Editar</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'apostillas:eliminar' apostilla.id %}">Eliminar</a>
                             </td>
                         </tr>
                     {% endfor %}
