@@ -15,10 +15,10 @@ Detalle de Empleado
 
 {% block contenido %}
     <div class="col-xs-3">
-        <a href="{% url 'empleados:lista' %}" class="btn btn-primary">Regresar</a>
-        <a href="{% url 'empleados:modificar' empleado.id %}" class="btn btn-secondary">Modificar datos</a>
-        <a href="{% url 'empleados:grupo' empleado.id %}" class="btn btn-secondary">Modificar permisos</a>
-        <a href="{% url 'empleados:eliminar' empleado.id %}" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'empleados:lista' %}" class="btn btn-primary btn-sm">Regresar</a>
+        <a href="{% url 'empleados:modificar' empleado.id %}" class="btn btn-secondary btn-sm">Modificar datos</a>
+        <a href="{% url 'empleados:grupo' empleado.id %}" class="btn btn-secondary btn-sm">Modificar permisos</a>
+        <button onclick="muestraModal('{% url 'empleados:eliminar' empleado.id %}')" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
     </div>
     
     <div id="svg_wrap">
@@ -43,5 +43,30 @@ Detalle de Empleado
                 <p>{{permiso.name}}</p>
             {% endfor %}
         </section>
-    </div>  
+    </div>
+    
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminando Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalCuerpo">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <form id="formEliminar" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Sí</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock contenido %}
+
+{% block js %}
+    <script src="{% static 'js/modales.js' %}"></script>
+{% endblock %}

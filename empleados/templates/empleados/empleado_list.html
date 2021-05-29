@@ -5,14 +5,20 @@ Lista de empleados
 {% endblock titulo %}
 
 {% block encabezado %}
-Lista de empleados
+<div class="container">
+    <div class="row">
+        <div class="col-11">
+            Lista de Empleados
+        </div>
+        <div class="col-1">
+            <a class="btn btn-success btn-lg" href="{% url 'empleados:nuevo' %}">Nuevo</a>
+        </div>
+    </div>
+</div>
 {% endblock encabezado %}
 
 {% block contenido %}
 <div class="card mb-4">
-    <div class="card-header">
-        <a href="{% url 'empleados:nuevo' %}" class="btn btn-primary">Nuevo empleado</a>
-    </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
