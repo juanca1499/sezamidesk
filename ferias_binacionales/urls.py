@@ -4,3 +4,7 @@ from django.urls import path
 from . import views
 
 app_name = 'ferias_binacionales'
+
+urlpatterns = [
+    path('servicios/',views.servicios,name='servicios')
+]
