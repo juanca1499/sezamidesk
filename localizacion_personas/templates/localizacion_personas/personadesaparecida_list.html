@@ -24,6 +24,7 @@
                         <th>Nombre del solicitante</th>
                         <th>Apellidos del solicitante</th>
                         <th>Telefono del solicitante</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -36,6 +37,7 @@
                         <th>Nombre del solicitante</th>
                         <th>Apellidos del solicitante</th>
                         <th>Telefono del solicitante</th>
+                        <th>Opciones</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -49,6 +51,10 @@
                             <td>{{persona.nombre_solicitante}}</td>
                             <td>{{persona.apellido_paterno_solicitante}} {{persona.apellido_materno_solicitante}}</td>
                             <td>{{persona.telefono_solicitante}}</td>
+                            <td>
+                                <a class="btn btn-outline-primary btn-sm" href="{% url 'localizacion_personas:detalle' persona.curp %}">Ver más</a>
+                                <a class="btn btn-outline-primary btn-sm" href="{% url 'localizacion_personas:editar' persona.curp %}">Editar</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

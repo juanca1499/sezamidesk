@@ -16,7 +16,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Trámites
+        Información de trámites
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
@@ -28,26 +28,32 @@
                     <th>Estado del trámite</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Beneficiario</th>
+                    <th>ID</th>
                     <th>Beneficiario</th>
                     <th>Empleado</th>
                     <th>Estado</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
+                    <th>Acciones</th>
                 </tr>
             </tfoot>
             <tbody>
                 {% for tramite in object_list %}
                     <tr>
-                        <td>{{tramite.beneficiario}}</td>
+                        <td>{{tramite.id}}</td>
+                        <td>{{tramite.beneficiario.nombre}} {{tramite.beneficiario.primer_apellido}} {{tramite.beneficiario.segundo_apellido}}</td>
                         <td>{{tramite.empleado}}</td>
                         <td>{{tramite.estado}}</td>
                         <td>{{tramite.fecha_inicio}}</td>
                         <td>{{tramite.fecha_fin}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'tramites:detalle_tramite' tramite.id %}">Ver más</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

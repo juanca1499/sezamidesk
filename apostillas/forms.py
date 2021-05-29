@@ -6,4 +6,12 @@ class ApostillaForm(forms.ModelForm):
     
     class Meta:
         model = Apostilla
-        fields = '__all__'
+        fields = ('acta_americana','acta_mexicana','identificacion_padres','curp','comprobante_domicilio','rfc')
+        widgets = {
+            'acta_americana':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'acta_mexicana':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'identificacion_padres':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'curp':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'comprobante_domicilio':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'rfc':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+        }

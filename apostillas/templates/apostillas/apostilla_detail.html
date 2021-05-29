@@ -27,12 +27,12 @@
             <p><b>Estado de los documentos</b></p>
             <hr>
             <div class="col-6">
-            <p><b>Acta de nacimiento americana: </b>{% if apostilla.acta_americana == true %}Entregada{% else %}No entregada{% endif %}</p>
-            <p><b>Acta de nacimiento mexicana: </b>{% if apostilla.acta_mexicana == true %}Entregada{% else %}No entregada{% endif %}</p>
-            <p><b>Identificación de los padres: </b>{% if apostilla.identificacion_padres == true %}Entregadas{% else %}No entregadas{% endif %}</p>
-            <p><b>CURP: </b>{% if apostilla.curp == true %}Entregada{% else %}No entregada{% endif %}</p>
-            <p><b>Comprobante de domicilio: </b>{% if apostilla.comprobante_domicilio == true %}Entregado{% else %}No entregado{% endif %}</p>
-            <p><b>RFC: </b>{% if apostilla.rfc == true %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>Acta de nacimiento americana: </b>{% if apostilla.acta_americana == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Acta de nacimiento mexicana: </b>{% if apostilla.acta_mexicana == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Identificación de los padres: </b>{% if apostilla.identificacion_padres == 1 %}Entregadas{% else %}No entregadas{% endif %}</p>
+            <p><b>CURP: </b>{% if apostilla.curp == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Comprobante de domicilio: </b>{% if apostilla.comprobante_domicilio == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>RFC: </b>{% if apostilla.rfc == 1 %}Entregado{% else %}No entregado{% endif %}</p>
         </section>
     </div>    
     <div id="svg_wrap">
@@ -44,5 +44,6 @@
             <p><b>Fecha de finalización: </b> {{apostilla.tramite.fecha_fin}}</p>
             <p><b>Estado: </b> {{apostilla.tramite.estado}}</p>
         </section>
+        <a class="btn btn-secondary" href="{% url 'apostillas:lista' %}">Regresar</a>
     </div>    
 {% endblock %}

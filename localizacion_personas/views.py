@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from .models import PersonaDesaparecida
-from .form import PersonaDesaparecidaForm
+from .forms import PersonaDesaparecidaForm
 
 class ListaPersonasDesaparecidas(ListView):
     model = PersonaDesaparecida
@@ -26,3 +26,8 @@ class EditarPersonaDesaparecida(UpdateView):
 
 class DetallePersonaDesaparecida(DetailView):
     model = PersonaDesaparecida
+    template_name = 'localizacion_personas/personadesaparecida_detail.html'
+
+    def get(self, request, *args, **kwargs):
+        persona = get_object_or_404(PersonaDesaparecida,curp=kwargs['curp'])
+        return render(request, self.template_name, {'persona': persona})

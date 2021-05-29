@@ -5,8 +5,26 @@
     Apostillas
 {% endblock %}
 
-{% block encabezado %} Lista de trámites de apostilla {% endblock %}
+{% block encabezado %} 
+    <div class="container">
+        <div class="row">
+            <div class="col-11">
+                Lista de trámites de apostilla 
+            </div>
+            <div class="col-1">
+                <a class="btn btn-success btn-lg" href="{% url 'apostillas:nueva' %}">Nuevo</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 {% block contenido %}
+    {% if messages %}
+        {% for mensaje in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}">
+                {{mensaje}}
+            </div>
+        {% endfor %}
+    {% endif %}
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -45,42 +63,42 @@
                         <tr>
                             <td>{{apostilla.tramite.beneficiario.nombre}}</td>
                             <td>
-                                {% if apostilla.acta_americana == true %}
+                                {% if apostilla.acta_americana == 1 %}
                                     Entregada
                                 {% else %}
                                     No entregada
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.acta_mexicana == true %}
+                                {% if apostilla.acta_mexicana == 1 %}
                                     Entregada
                                 {% else %}
                                     No entregada
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.identificacion_padres == true %}
+                                {% if apostilla.identificacion_padres == 1 %}
                                     Entregada
                                 {% else %}
                                     No entregada
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.curp == true %}
+                                {% if apostilla.curp == 1 %}
                                     Entregada
                                 {% else %}
                                     No entregada
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.comprobante_domicilio == true %}
+                                {% if apostilla.comprobante_domicilio == 1 %}
                                     Entregado
                                 {% else %}
                                     No entregado
                                 {% endif %}
                             </td>
                             <td>
-                                {% if apostilla.rfc == true %}
+                                {% if apostilla.rfc == 1 %}
                                     Entregado
                                 {% else %}
                                     No entregado
@@ -88,7 +106,9 @@
                             </td>
                             <td>{{apostilla.tramite.estado}}</td>
                             <td>
-                                <a class="btn btn-primary btn-sm"" href="{% url 'apostillas:detalle' apostilla.id %}">Ver más</a>
+                                <a class="btn btn-secondary btn-sm" href="{% url 'apostillas:detalle' apostilla.id %}">Ver más</a>
+                                <a class="btn btn-warning btn-sm" href="{% url 'apostillas:editar' apostilla.id %}">Editar</a>
+                                <button onclick="muestraModal('{% url 'apostillas:eliminar' apostilla.id %}')" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
                             </td>
                         </tr>
                     {% endfor %}
@@ -96,4 +116,29 @@
             </table>
         </div>
     </div>
+
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminando Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalCuerpo">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <form id="formEliminar" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Sí</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/modales.js' %}"></script>
 {% endblock %}
