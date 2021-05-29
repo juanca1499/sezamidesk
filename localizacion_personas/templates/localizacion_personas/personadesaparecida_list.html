@@ -53,6 +53,7 @@
                             <td>{{persona.telefono_solicitante}}</td>
                             <td>
                                 <a class="btn btn-outline-primary btn-sm" href="{% url 'localizacion_personas:detalle' persona.curp %}">Ver más</a>
+                                <a class="btn btn-outline-primary btn-sm" href="{% url 'localizacion_personas:editar' persona.curp %}">Editar</a>
                             </td>
                         </tr>
                     {% endfor %}
