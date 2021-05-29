@@ -26,3 +26,27 @@ class EmpleadoForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class EmpleadoModificarForm(forms.ModelForm):
+
+    class Meta:
+        model = Empleado
+        
+        fields = ('first_name','last_name','segundo_apellido','alias','telefono','username')
+
+        widgets = {
+            'first_name':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre(s)','onFocus':'validar(this)'}),
+            'last_name':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Primer apellido','onFocus':'validar(this)'}),
+            'segundo_apellido':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Segundo apellido','onFocus':'validar(this)'}),
+            'alias':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Alias','onFocus':'validar(this)'}),
+            'telefono':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Teléfono','pattern':'[0-9]+'}),
+            'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre de usuario','onFocus':'validar(this)'}),
+        }
+
+    def save(self, commit=True):
+        user = super(EmpleadoForm, self).save(commit=False)
+        if commit:
+            user.save()
+        return user
+
+

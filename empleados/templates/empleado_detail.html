@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Empleado
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} 
+Detalle de Empleado
+{% endblock %}
+
+{% block contenido %}
+    <div class="col-xs-3">
+        <a href="{% url 'empleados:lista' %}" class="btn btn-primary">Regresar</a>
+        <a href="{% url 'empleados:modificar' empleado.id %}" class="btn btn-secondary">Modificar datos</a>
+        <a href="{% url 'empleados:grupo' empleado.id %}" class="btn btn-secondary">Modificar permisos</a>
+        <a href="{% url 'empleados:eliminar' empleado.id %}" class="btn btn-danger">Eliminar</a>
+    </div>
+    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos del Empleado</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Nombre(s): </b>{{empleado.first_name}}</p>
+            <p><b>Primer apellido: </b> {{empleado.last_name}}</p>
+            <p><b>Segundo apellido: </b> {{empleado.segundo_apellido}}</p>
+            <p><b>Alias: </b>{{empleado.alias}}</p>
+            <p><b>Teléfono: </b>{{empleado.telefono}}</p>
+            <p><b>Grupo: </b>{{empleado.grupo}}</p>
+        </section>
+    </div>
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Permisos del Empleado</b></p>
+            <hr>
+            <div class="col-6">
+            {% for permiso in permisos %}
+                <p>{{permiso.name}}</p>
+            {% endfor %}
+        </section>
+    </div>  
+{% endblock contenido %}
