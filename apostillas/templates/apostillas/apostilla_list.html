@@ -5,8 +5,26 @@
     Apostillas
 {% endblock %}
 
-{% block encabezado %} Lista de trámites de apostilla {% endblock %}
+{% block encabezado %} 
+    <div class="container">
+        <div class="row">
+            <div class="col-11">
+                Lista de trámites de apostilla 
+            </div>
+            <div class="col-1">
+                <a class="btn btn-success btn-lg" href="{% url 'apostillas:nueva' %}">Nuevo</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 {% block contenido %}
+    {% if messages %}
+        {% for mensaje in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}">
+                {{mensaje}}
+            </div>
+        {% endfor %}
+    {% endif %}
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -88,7 +106,6 @@
                             </td>
                             <td>{{apostilla.tramite.estado}}</td>
                             <td>
-                                <a class="btn btn-success btn-sm" href="{% url 'apostillas:nueva' %}">Nueva</a>
                                 <a class="btn btn-secondary btn-sm" href="{% url 'apostillas:detalle' apostilla.id %}">Ver más</a>
                                 <a class="btn btn-warning btn-sm" href="{% url 'apostillas:editar' apostilla.id %}">Editar</a>
                                 <button onclick="muestraModal('{% url 'apostillas:eliminar' apostilla.id %}')" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
@@ -120,7 +137,6 @@
             </div>
         </div>
     </div>
-    
 {% endblock %}
 
 {% block js %}
