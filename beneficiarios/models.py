@@ -18,6 +18,7 @@ class Beneficiario(models.Model):
     asentamiento = models.ForeignKey("catalogos.Asentamiento", verbose_name="Asentamiento", on_delete=models.CASCADE)
     entre_vialidades = models.CharField("Entre vialidades", max_length=50)
     descripcion_ubicacion = models.TextField("Referencias de ubicación", blank = True)
+    
     estudio_socioeconomico = models.BooleanField("Presentó estudio socioeconómico")
     estado_civil = models.ForeignKey("catalogos.EstadoCivil", verbose_name="Estado civíl", on_delete=models.CASCADE)
     jefe_familia = models.BooleanField("Es jefe de familia")
@@ -35,9 +36,7 @@ class Beneficiario(models.Model):
     vivienda_internet = models.BooleanField("Internet", default = False)
     nivel_estudios = models.ForeignKey("catalogos.NivelEstudios", verbose_name="Nivel de estudios", on_delete=models.CASCADE)
     tipo_seguridad_social = models.ForeignKey("catalogos.TipoSeguridadSocial", verbose_name="Tipo de seguridad social", on_delete=models.CASCADE)
-    # DATOS PERSONALES
     discapacidad = models.ForeignKey("catalogos.Discapacidad", verbose_name="Discapacidad", on_delete=models.CASCADE)
-    # DATOS PERSONALES
     grupo_vulnerable = models.ForeignKey("catalogos.GrupoVulnerable", verbose_name="Grupo vulnerable", on_delete=models.CASCADE)
     beneficiario_colectivo = models.BooleanField("Es beneficiario colectivo", default = False)
     
