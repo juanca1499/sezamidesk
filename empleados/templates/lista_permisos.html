@@ -14,7 +14,11 @@ Permisos de {{ grupo.grupo }}
 Permisos de {{ grupo.grupo }}
 {% endblock encabezado %}
 {% block contenido %}
+<br>
+<h5>Empleado "{{empleado}}"</h5>
+<br>
 <form action="{% url 'empleados:agrega-permisos' empleado.id %}" method="POST">
+    <input name="grupo" type="hidden" value="{{grupo.id}}">
     <table class="table">
         <thead>
             <th>Permiso</th>
@@ -29,7 +33,13 @@ Permisos de {{ grupo.grupo }}
                         </td>
                         <td>
                             <label class="switch" >
-                                <input type="checkbox" name='{{permiso.id}}'>
+                                
+                                {% if permiso in grupos_empleado %}
+                                    <input type="checkbox" name='{{permiso.id}}' checked>
+                                {% else %}
+                                    <input type="checkbox" name='{{permiso.id}}'>
+                                {% endif %}
+                                    
                                 <span class="slider round"></span>
                             </label>
                         </td>
@@ -40,5 +50,10 @@ Permisos de {{ grupo.grupo }}
     </table>
     {% csrf_token %}
     <button type="submit" class="btn btn-primary">Guardar</button>
+    
+    {% if modificar %}
+        <a href="{% url 'empleados:detalle' empleado.id %}" class="btn btn-secondary">Cancelar</a>
+    {% endif %}
+        
 </form>
 {% endblock contenido %}
