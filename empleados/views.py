@@ -49,16 +49,19 @@ class EmpleadoLogin(LoginView):
     template_name='login.html'
     form_class = AuthenticationForm
 
+class EmpleadoLogout(LogoutView):
+    template_name='login.html'
+
 @login_required
 @permission_required('empleados.add_empleado', raise_exception=True)
 def permisos(request, pk):
     empleado = get_object_or_404(Empleado,pk=pk)
     grupo = get_object_or_404(Grupo,grupo=empleado.grupo)
+
     if (grupo.grupo=="Super Admin"):
-        empleado.save()
-        empleado.groups.clear()
-        empleado.groups.add(Group.objects.get(name=grupo.grupo))
+        guardarSuperAdmin(empleado,grupo)
         return redirect('empleados:lista')
+    
     groups = Group.objects.all()
     grupos_empleado = empleado.groups.all()
     permisos=[]
@@ -116,10 +119,7 @@ def seleccionarPermisos(request):
     grupo = Grupo.objects.get(id=id_grupo)
 
     if (grupo.grupo=="Super Admin"):
-        empleado.grupo=grupo
-        empleado.save()
-        empleado.groups.clear()
-        empleado.groups.add(Group.objects.get(name=grupo.grupo))
+        guardarSuperAdmin(empleado,grupo)
         return redirect('empleados:lista')
 
     grupos_empleado = empleado.groups.all()
@@ -134,3 +134,9 @@ def seleccionarPermisos(request):
                                                    'empleado':empleado,
                                                    'grupos_empleado':grupos_empleado,
                                                    'modificar':1})
+
+def guardarSuperAdmin(empleado,grupo):
+    empleado.grupo=grupo
+    empleado.save()
+    empleado.groups.clear()
+    empleado.groups.add(Group.objects.get(name=grupo.grupo))
