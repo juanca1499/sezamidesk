@@ -57,6 +57,8 @@ class NivelEstudios(models.Model):
 
 class TipoSeguridadSocial(models.Model):
     seguridad_social = models.CharField('Seguridad social', max_length=20)
+    def __str__(self):
+        return self.seguridad_social
 
 class Discapacidad(models.Model):
     discapacidad = models.CharField('Tipo de discapacidad', max_length=60)

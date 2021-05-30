@@ -19,175 +19,20 @@
         <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
         </div>
         <section>
-            <p style="font-size: x-large;">Datos personales</p>
-            <hr>
             <div class="container">
-                <div class="row">
-                    <div class="col" style="color:rgb(110, 110, 110)">
-                        Curp:
-                        {% if etiqueta == "Actualizar datos del" %}
-                            <br>
-                            <p style="color: rgb(75, 125, 219);">{{beneficiario.curp}}</p>
-                            {{ form.curp.as_hidden }}
-                        {% else %}
-                            {{form.curp}}
-                        {% endif %}
-                    </div>
-                    <div class="col formulario-texto" style="color:rgb(110, 110, 110)">
-                        Apellido paterno: {{form.primer_apellido}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col" style="color:rgb(110, 110, 110)">
-                        Apellido materno: {{form.segundo_apellido}}
-                    </div>
-                    <div class="col" style="color:rgb(110, 110, 110)">
-                        Nombre: {{form.nombre}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col" style="color:rgb(110, 110, 110)">
-                        Identificación: {{form.identificacion}}
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col" style="color:rgb(110, 110, 110)">
-                        Beneficiario colectivo: {{form.beneficiario_colectivo}}
-                    </div>
-                </div>
+                <p style="display: inline;">
+                    {{form.as_p}}
+                </p>
             </div>
         </section>
-
-        <section>
-            <p style="font-size: x-large;">Dirección</p>
-            <hr>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        {{form.nombre_vialidad}}
-                    </div>
-                    <div class="col">
-                        {{form.entre_vialidades}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {{form.tipo_vialidad}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {{form.numero_exterior}}
-                    </div>
-                    <div class="col">
-                        {{form.numero_interior}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {{form.asentamiento}}
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        {{form.descripcion_ubicacion}}
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <p style="font-size: x-large;">Estudio socioeconómico</p>
-            <hr>
-            <div class="container">
-                <div class="col">
-                    {{form.estudio_socioeconomico}} Entregó estudio socioeconómico <br>
-                    Estado civíl: {{form.estado_civil}}
-                    {{form.jefe_familia}} Es jefe de familia <br>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Ocupación: {{form.ocupacion}}
-                    </div>
-                    <div class="col">
-                        Ingreso mensual: {{form.ingreso_mensual}}
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        Número de integrantes de la familia: {{form.integrantes_familia}}
-                    </div>
-                    <div class="col">
-                        Número de dependientes económicos: {{form.dependientes_economicos}}
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        Vivienda: {{form.vivienda}}
-                    </div>
-                    <div class="col">
-                        Habitantes: {{form.numero_habitantes_vivienda}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Electricidad: {{form.vivienda_electricidad}}
-                    </div>
-                    <div class="col">
-                        Agua corriente: {{form.vivienda_agua}}
-                    </div>
-                    <div class="col">
-                        Drenaje: {{form.vivienda_drenaje}}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        Gas: {{form.vivienda_gas}}
-                    </div>
-                    <div class="col">
-                        Teléfono: {{form.vivienda_telefono}}
-                    </div>
-                    <div class="col">
-                        Internet: {{form.vivienda_internet}}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        Nivel de estudios: {{form.nivel_estudios}}
-                    </div>
-                    <div class="col">
-                        Seguridad social: {{form.tipo_seguridad_social}}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        Discapacidad: {{form.discapacidad}}
-                    </div>
-                    <div class="col">
-                        Grupo vulnerable: {{form.grupo_vulnerable}}
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-
-        <div class="btn btn-secondary" id="prev">Regresar</div>
-        <div class="btn btn-primary" id="next" class="btn btn-primary">Siguiente</div>
+        <div id="prev">
+            <a class="btn btn-secondary" href="{% url 'beneficiarios:detalle' beneficiario.curp %}">Regresar</a>    
+            <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
+        </div>
         <!--Es el botón que va a enviar el formulario (en teoría xd)-->
         <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
         después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
-        <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
+        
     </form>
-{% endblock %}
-
-{% block js %}
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src="{% static 'js/formulario.js' %}"></script>
+    <br>
 {% endblock %}
