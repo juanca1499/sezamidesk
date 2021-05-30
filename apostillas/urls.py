@@ -4,7 +4,7 @@ from . import views
 app_name = 'apostillas'
 
 urlpatterns = [
-    path('lista/',views.ListaApostilla.as_view(),name='lista'),
+    path('',views.ListaApostilla.as_view(),name='lista'),
     path('nueva/',views.NuevaApostilla.as_view(),name='nueva'),
     path('detalle/<int:pk>',views.DetalleApostilla.as_view(),name='detalle'),
     path('editar/<int:pk>',views.EditarApostilla.as_view(),name='editar'),
