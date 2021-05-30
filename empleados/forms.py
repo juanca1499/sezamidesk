@@ -41,10 +41,12 @@ class EmpleadoModificarForm(forms.ModelForm):
             'alias':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Alias','onFocus':'validar(this)'}),
             'telefono':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Teléfono','pattern':'[0-9]+'}),
             'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre de usuario','onFocus':'validar(this)'}),
+            'password':forms.PasswordInput(attrs={'class':'form-control','placeholder':'Contraseña'}),
+            'grupo':forms.Select(attrs={'class':'form-control'}),
         }
 
     def save(self, commit=True):
-        user = super(EmpleadoForm, self).save(commit=False)
+        user = super(EmpleadoModificarForm, self).save(commit=False)
         if commit:
             user.save()
         return user

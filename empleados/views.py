@@ -8,6 +8,8 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
 
 from empleados.models import Empleado,Grupo
 from .forms import EmpleadoForm,EmpleadoModificarForm
@@ -15,10 +17,12 @@ from .models import Empleado
 
 # Create your views here.
 
-class EmpleadoList(ListView):
+class EmpleadoList(PermissionRequiredMixin,ListView):
+    permission_required = 'empleados.view_empleado'
     model = Empleado   
 
-class NuevoEmpleado(CreateView):
+class NuevoEmpleado(PermissionRequiredMixin,CreateView):
+    permission_required = 'empleados.add_empleado'
     model = Empleado
     form_class = EmpleadoForm
     extra_context = {'etiqueta':'Nuevo','btn':'Agregar'} 
@@ -29,19 +33,24 @@ class NuevoEmpleado(CreateView):
         user = form.save(commit=False)
         return super().form_valid(form)
 
-class EliminarEmpleado(DeleteView):
+class EliminarEmpleado(PermissionRequiredMixin,DeleteView):
+    permission_required = 'empleados.delete_empleado'
     model = Empleado
     success_url=reverse_lazy('empleados:lista')
 
-class ModificarEmpleado(UpdateView):
+class ModificarEmpleado(PermissionRequiredMixin,UpdateView):
+    permission_required = 'empleados.change_empleado'
     model = Empleado
     form_class = EmpleadoModificarForm
-    extra_context = {'etiqueta':'Modificar','btn':'Guardar'} 
+    extra_context = {'etiqueta':'Modificar','btn':'Guardar'}
+    success_url = reverse_lazy('empleados:lista') 
 
 class EmpleadoLogin(LoginView):
     template_name='login.html'
     form_class = AuthenticationForm
 
+@login_required
+@permission_required('empleados.add_empleado', raise_exception=True)
 def permisos(request, pk):
     empleado = get_object_or_404(Empleado,pk=pk)
     grupo = get_object_or_404(Grupo,grupo=empleado.grupo)
@@ -75,6 +84,8 @@ def agregaPermiso(request, pk):
 
     return redirect('empleados:lista')
 
+@login_required
+@permission_required('empleados.view_empleado', raise_exception=True)
 def detalleEmpleado(request,pk):
     empleado = get_object_or_404(Empleado,pk=pk)
     grupos = empleado.groups.all()
@@ -87,7 +98,9 @@ def detalleEmpleado(request,pk):
     
     return render(request, 'empleado_detail.html',{'permisos':grupos,
                                                    'empleado':empleado})
-                                                
+
+@login_required
+@permission_required('empleados.change_empleado', raise_exception=True)                                                
 def seleccionaGrupo(request,pk):
     empleado = get_object_or_404(Empleado,pk=pk)
     grupos = Grupo.objects.all()
@@ -95,6 +108,8 @@ def seleccionaGrupo(request,pk):
     return render(request, 'empleado_grupo.html',{'grupos':grupos,
                                                    'empleado':empleado})
 
+@login_required
+@permission_required('empleados.change_empleado', raise_exception=True)
 def seleccionarPermisos(request):
     empleado=Empleado.objects.get(pk=int(request.POST['empleado']))
     id_grupo=int(request.POST['select'])
