@@ -16,5 +16,5 @@ class BeneficiariosDetalle(DetailView):
 class BeneficiariosEditar(UpdateView):
     model = Beneficiario
     form_class = BeneficiarioForm
-    extra_context = {'etiqueta':'Actualizar datos','boton':'Guardar'}
+    extra_context = {'etiqueta':'Actualizar datos del','boton':'Guardar'}
     success_url = reverse_lazy('beneficiarios:principal')

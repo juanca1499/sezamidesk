@@ -42,10 +42,15 @@ input[type="checkbox"] {
   display: inline-block;
 }
 
+.formulario-texto{
+  color:rgb(110, 110, 110);
+}
+
 p {
-    font-size:x-large;
+    font-size:larger;
 }
 
 label {
   font-size:medium;
 }
+

@@ -19,32 +19,40 @@
         <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
         </div>
         <section>
-            <p>Datos personales</p>
+            <p style="font-size: x-large;">Datos personales</p>
+            <hr>
             <div class="container">
                 <div class="row">
-                    <div class="col">
-                        {{form.curp}}
+                    <div class="col" style="color:rgb(110, 110, 110)">
+                        Curp:
+                        {% if etiqueta == "Actualizar datos del" %}
+                            <br>
+                            <p style="color: rgb(75, 125, 219);">{{beneficiario.curp}}</p>
+                            {{ form.curp.as_hidden }}
+                        {% else %}
+                            {{form.curp}}
+                        {% endif %}
                     </div>
-                    <div class="col">
-                        {{form.primer_apellido}}
+                    <div class="col formulario-texto" style="color:rgb(110, 110, 110)">
+                        Apellido paterno: {{form.primer_apellido}}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        {{form.segundo_apellido}}
+                    <div class="col" style="color:rgb(110, 110, 110)">
+                        Apellido materno: {{form.segundo_apellido}}
                     </div>
-                    <div class="col">
-                        {{form.nombre}}
+                    <div class="col" style="color:rgb(110, 110, 110)">
+                        Nombre: {{form.nombre}}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col" style="color:rgb(110, 110, 110)">
                         Identificación: {{form.identificacion}}
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col" style="color:rgb(110, 110, 110)">
                         Beneficiario colectivo: {{form.beneficiario_colectivo}}
                     </div>
                 </div>
@@ -52,7 +60,8 @@
         </section>
 
         <section>
-            <p>Dirección</p>
+            <p style="font-size: x-large;">Dirección</p>
+            <hr>
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -90,15 +99,15 @@
         </section>
         
         <section>
-            <p>Estudio socioeconómico</p>
+            <p style="font-size: x-large;">Estudio socioeconómico</p>
             <hr>
             <div class="container">
-                <div class="col" style="font-size: larger;">
+                <div class="col">
                     {{form.estudio_socioeconomico}} Entregó estudio socioeconómico <br>
                     Estado civíl: {{form.estado_civil}}
                     {{form.jefe_familia}} Es jefe de familia <br>
                 </div>
-                <div class="row" style="font-size: larger;">
+                <div class="row">
                     <div class="col">
                         Ocupación: {{form.ocupacion}}
                     </div>
@@ -107,7 +116,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="row" style="font-size: larger;">
+                <div class="row">
                     <div class="col">
                         Número de integrantes de la familia: {{form.integrantes_familia}}
                     </div>
@@ -116,7 +125,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="row" style="font-size: larger;">
+                <div class="row">
                     <div class="col">
                         Vivienda: {{form.vivienda}}
                     </div>
@@ -124,7 +133,7 @@
                         Habitantes: {{form.numero_habitantes_vivienda}}
                     </div>
                 </div>
-                <div class="row" style="font-size: larger;">
+                <div class="row">
                     <div class="col">
                         Electricidad: {{form.vivienda_electricidad}}
                     </div>
@@ -136,7 +145,7 @@
                     </div>
                 </div>
 
-                <div class="row" style="font-size: larger;">
+                <div class="row">
                     <div class="col">
                         Gas: {{form.vivienda_gas}}
                     </div>
@@ -148,7 +157,7 @@
                     </div>
                 </div>
 
-                <div class="row" style="font-size: larger;">
+                <div class="row">
                     <div class="col">
                         Nivel de estudios: {{form.nivel_estudios}}
                     </div>
@@ -157,7 +166,7 @@
                     </div>
                 </div>
 
-                <div class="row" style="font-size: larger;">
+                <div class="row">
                     <div class="col">
                         Discapacidad: {{form.discapacidad}}
                     </div>
