@@ -19,96 +19,13 @@
         <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
         </div>
         <section>
-            <p>Datos de la persona desaparecida</p>
             <div class="container">
-                <div class="row">
-                    {% if etiqueta == "Editar" %}
-                        {{ form.curp.as_hidden }}
-                        <div class="col">
-                            <fieldset disabled="disabled">
-                                {{form.curp}}
-                            </fieldset>
-                        </div>
-                        <div class="col">
-                            {{form.nombre_desaparecido}}
-                        </div>
-                    {% else %}
-                        <div class="col">
-                            {{form.curp}}
-                        </div>
-                        <div class="col">
-                            {{form.nombre_desaparecido}}
-                        </div>
-                    {% endif %}
-                            
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {{form.apellido_paterno_desaparecido}}
-                    </div>
-                    <div class="col">
-                        {{form.apellido_materno_desaparecido}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Fecha de nacimiento {{form.fecha_nacimiento_desaparecido}}
-                    </div>
-                </div>
+                <p style="display: inline;">
+                    {{form.as_p}}
+                </p>
             </div>
         </section>
-
-        <section>
-            <p>Información de la desaparición</p>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        Fecha de la desaparición {{form.fecha_desaparicion}}
-                    </div>
-                    <div class="col">
-                        {{form.ultimo_lugar}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Estatus {{form.estatus}}                
-                    </div>
-                    <div class="col">
-                        {{form.observaciones}}
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <p>Datos del solicitante</p>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        {{form.nombre_solicitante}}
-                    </div>
-                    <div class="col">
-                        {{form.apellido_paterno_solicitante}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {{form.apellido_materno_solicitante}}
-                    </div>
-                    <div class="col">
-                        {{form.telefono_solicitante}}
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-
-        <div class="btn btn-secondary" id="prev">Regresar</div>
-        <div class="btn btn-primary" id="next" class="btn btn-primary">Siguiente</div>
-        <!--Es el botón que va a enviar el formulario (en teoría xd)-->
-        <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
-        después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
-        <button type="submit" class="btn btn-primary" id="submit">{{boton}}</button>
+        <button type="submit" class="btn btn-primary">{{boton}}</button>
     </form>
 {% endblock %}
 

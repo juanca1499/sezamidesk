@@ -16,7 +16,7 @@ class PersonaDesaparecidaForm(forms.ModelForm):
         model = PersonaDesaparecida
         fields = '__all__'
         widgets = {
-                'curp':forms.TextInput(attrs={'class':'form-control','placeholder':'CURP', 'id':'txtrut'}),
+                'curp':forms.TextInput(attrs={'class':'form-control','placeholder':'CURP'}),
                 'nombre_desaparecido':forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre'}),
                 'apellido_paterno_desaparecido':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido paterno'}),
                 'apellido_materno_desaparecido':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido materno'}),
@@ -25,8 +25,8 @@ class PersonaDesaparecidaForm(forms.ModelForm):
                 'estatus':forms.Select(attrs={'class':'form-select'}),
                 'ultimo_lugar':forms.TextInput(attrs={'class':'form-control','placeholder':'Último lugar dónde se sabe al desaparecido(a)'}),
                 'fecha_desaparicion':forms.DateInput(attrs={'class':'form-control'}),
-                'telefono_solicitante':forms.TextInput(attrs={'class':'form-control','placeholder':'Número de télefono'}),
-                'nombre_solicitante':forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre'}),
-                'apellido_paterno_solicitante':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido paterno'}),
-                'apellido_materno_solicitante':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido materno'}),
+                'telefono_solicitante':forms.TextInput(attrs={'class':'form-control','placeholder':'Número de télefono del solicitante'}),
+                'nombre_solicitante':forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre del solicitante'}),
+                'apellido_paterno_solicitante':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido paterno del solicitante'}),
+                'apellido_materno_solicitante':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido materno del solicitante'}),
         }
