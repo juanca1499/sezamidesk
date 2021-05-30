@@ -134,14 +134,19 @@
             <p><b>Grupo vulnerable:</b> {{beneficiario.grupo_vulnerable}}</p>
         </div>
     </section>
+    <div id="prev">
+        <a class="btn btn-secondary" href="{% url 'beneficiarios:principal' %}">Regresar</a>
+        <a  class="btn btn-primary" href = "{% url 'beneficiarios:editar' beneficiario.curp %}">Editar</a>
+    </div>
 </div>
+    
+    <!-- <div id="prev"><a  class="btn btn-secondary" href = "{% url 'beneficiarios:principal' %}">Regresar</a></div>
+    <div id="next"><a  class="btn btn-primary" href = "{% url 'beneficiarios:principal' %}">Editar</a></div> -->
 
-
-    <div id="prev"> <a class="btn btn-secondary" href = "{% url 'beneficiarios:principal' %}">Regresar</a></div>
     <!--Es el botón que va a enviar el formulario (en teoría xd)-->
     <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
     después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
-
+<br>
 {% endblock %}
 
 

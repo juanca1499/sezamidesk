@@ -10,6 +10,7 @@ class Beneficiario(models.Model):
     segundo_apellido = models.CharField("Segundo apellido", max_length=50)
     nombre = models.CharField("Nombre(s)", max_length=50)
     identificacion = models.ForeignKey("catalogos.IdentificacionOficial", verbose_name="Identificación Oficial", on_delete=models.CASCADE)
+    beneficiario_colectivo = models.BooleanField("Es beneficiario colectivo", default = False)
     
     tipo_vialidad = models.ForeignKey("catalogos.TipoVialidad", verbose_name="Tipo de vialidad", on_delete=models.CASCADE)
     nombre_vialidad = models.CharField("Vialidad", max_length=50)
@@ -38,7 +39,6 @@ class Beneficiario(models.Model):
     tipo_seguridad_social = models.ForeignKey("catalogos.TipoSeguridadSocial", verbose_name="Tipo de seguridad social", on_delete=models.CASCADE)
     discapacidad = models.ForeignKey("catalogos.Discapacidad", verbose_name="Discapacidad", on_delete=models.CASCADE)
     grupo_vulnerable = models.ForeignKey("catalogos.GrupoVulnerable", verbose_name="Grupo vulnerable", on_delete=models.CASCADE)
-    beneficiario_colectivo = models.BooleanField("Es beneficiario colectivo", default = False)
     
     
 

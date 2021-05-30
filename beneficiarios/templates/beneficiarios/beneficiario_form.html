@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    {{ etiqueta }} beneficiario
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %}
+    {{ etiqueta }} beneficiario
+{% endblock %}
+{% block contenido %}
+    <form method="post">
+        {% csrf_token %}
+        <div id="svg_wrap">
+        <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
+        </div>
+        <section>
+            <p>Datos personales</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        {{form.curp}}
+                    </div>
+                    <div class="col">
+                        {{form.primer_apellido}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{form.segundo_apellido}}
+                    </div>
+                    <div class="col">
+                        {{form.nombre}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Identificación: {{form.identificacion}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        Beneficiario colectivo: {{form.beneficiario_colectivo}}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <p>Dirección</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        {{form.nombre_vialidad}}
+                    </div>
+                    <div class="col">
+                        {{form.entre_vialidades}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{form.tipo_vialidad}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{form.numero_exterior}}
+                    </div>
+                    <div class="col">
+                        {{form.numero_interior}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{form.asentamiento}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        {{form.descripcion_ubicacion}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <p>Estudio socioeconómico</p>
+            <hr>
+            <div class="container">
+                <div class="col" style="font-size: larger;">
+                    {{form.estudio_socioeconomico}} Entregó estudio socioeconómico <br>
+                    Estado civíl: {{form.estado_civil}}
+                    {{form.jefe_familia}} Es jefe de familia <br>
+                </div>
+                <div class="row" style="font-size: larger;">
+                    <div class="col">
+                        Ocupación: {{form.ocupacion}}
+                    </div>
+                    <div class="col">
+                        Ingreso mensual: {{form.ingreso_mensual}}
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="font-size: larger;">
+                    <div class="col">
+                        Número de integrantes de la familia: {{form.integrantes_familia}}
+                    </div>
+                    <div class="col">
+                        Número de dependientes económicos: {{form.dependientes_economicos}}
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="font-size: larger;">
+                    <div class="col">
+                        Vivienda: {{form.vivienda}}
+                    </div>
+                    <div class="col">
+                        Habitantes: {{form.numero_habitantes_vivienda}}
+                    </div>
+                </div>
+                <div class="row" style="font-size: larger;">
+                    <div class="col">
+                        Electricidad: {{form.vivienda_electricidad}}
+                    </div>
+                    <div class="col">
+                        Agua corriente: {{form.vivienda_agua}}
+                    </div>
+                    <div class="col">
+                        Drenaje: {{form.vivienda_drenaje}}
+                    </div>
+                </div>
+
+                <div class="row" style="font-size: larger;">
+                    <div class="col">
+                        Gas: {{form.vivienda_gas}}
+                    </div>
+                    <div class="col">
+                        Teléfono: {{form.vivienda_telefono}}
+                    </div>
+                    <div class="col">
+                        Internet: {{form.vivienda_internet}}
+                    </div>
+                </div>
+
+                <div class="row" style="font-size: larger;">
+                    <div class="col">
+                        Nivel de estudios: {{form.nivel_estudios}}
+                    </div>
+                    <div class="col">
+                        Seguridad social: {{form.tipo_seguridad_social}}
+                    </div>
+                </div>
+
+                <div class="row" style="font-size: larger;">
+                    <div class="col">
+                        Discapacidad: {{form.discapacidad}}
+                    </div>
+                    <div class="col">
+                        Grupo vulnerable: {{form.grupo_vulnerable}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        <div class="btn btn-secondary" id="prev">Regresar</div>
+        <div class="btn btn-primary" id="next" class="btn btn-primary">Siguiente</div>
+        <!--Es el botón que va a enviar el formulario (en teoría xd)-->
+        <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
+        después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
+        <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="{% static 'js/formulario.js' %}"></script>
+{% endblock %}
