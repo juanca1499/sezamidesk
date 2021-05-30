@@ -11,7 +11,7 @@ class PersonaDesaparecida(models.Model):
     estatus = models.ForeignKey("localizacion_personas.Estatus",verbose_name='Estatus', on_delete=models.CASCADE)
     ultimo_lugar = models.CharField('Última lugar dónde se sabe al desaparecido(a)',max_length=30)
     fecha_desaparicion = models.DateField('Fecha de desaparición')
-    telefono_solicitante = models.CharField("Teléfono",max_length=10,validators=[RegexValidator(r'^[0-9]\d*$')],blank=True, null=True)
+    telefono_solicitante = models.CharField("Teléfono",max_length=10,validators=[RegexValidator('^(\d{10})$')],blank=True, null=True)
     nombre_solicitante = models.CharField('Nombre',max_length=50)
     apellido_paterno_solicitante = models.CharField('Apellido paterno',max_length=50)
     apellido_materno_solicitante = models.CharField('Apellido materno',max_length=50,blank=True, null=True)
