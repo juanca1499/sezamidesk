@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import Group
 from django.urls.base import reverse
 from django.shortcuts import redirect, render
@@ -6,6 +7,7 @@ from django.views.generic.edit import CreateView, DeleteView,UpdateView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
+from django.contrib.auth.views import LoginView,LogoutView
 
 from empleados.models import Empleado,Grupo
 from .forms import EmpleadoForm,EmpleadoModificarForm
@@ -29,16 +31,25 @@ class NuevoEmpleado(CreateView):
 
 class EliminarEmpleado(DeleteView):
     model = Empleado
-    success_url=reverse_lazy('empleado:lista')
+    success_url=reverse_lazy('empleados:lista')
 
 class ModificarEmpleado(UpdateView):
     model = Empleado
     form_class = EmpleadoModificarForm
     extra_context = {'etiqueta':'Modificar','btn':'Guardar'} 
 
+class EmpleadoLogin(LoginView):
+    template_name='login.html'
+    form_class = AuthenticationForm
+
 def permisos(request, pk):
     empleado = get_object_or_404(Empleado,pk=pk)
     grupo = get_object_or_404(Grupo,grupo=empleado.grupo)
+    if (grupo.grupo=="Super Admin"):
+        empleado.save()
+        empleado.groups.clear()
+        empleado.groups.add(Group.objects.get(name=grupo.grupo))
+        return redirect('empleados:lista')
     groups = Group.objects.all()
     grupos_empleado = empleado.groups.all()
     permisos=[]
@@ -67,6 +78,12 @@ def agregaPermiso(request, pk):
 def detalleEmpleado(request,pk):
     empleado = get_object_or_404(Empleado,pk=pk)
     grupos = empleado.groups.all()
+    admin ='El empleado es super administrador'
+    for grupo in grupos:
+        if (grupo.name=='Super Admin'):
+            return render(request, 'empleado_detail.html',{'permisos':grupos,
+                                                           'empleado':empleado,
+                                                           'admin':admin})
     
     return render(request, 'empleado_detail.html',{'permisos':grupos,
                                                    'empleado':empleado})
@@ -81,8 +98,16 @@ def seleccionaGrupo(request,pk):
 def seleccionarPermisos(request):
     empleado=Empleado.objects.get(pk=int(request.POST['empleado']))
     id_grupo=int(request.POST['select'])
-    grupos_empleado = empleado.groups.all()
     grupo = Grupo.objects.get(id=id_grupo)
+
+    if (grupo.grupo=="Super Admin"):
+        empleado.grupo=grupo
+        empleado.save()
+        empleado.groups.clear()
+        empleado.groups.add(Group.objects.get(name=grupo.grupo))
+        return redirect('empleados:lista')
+
+    grupos_empleado = empleado.groups.all()
     groups = Group.objects.all()
     permisos=[]
     for group in groups:

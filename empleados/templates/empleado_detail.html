@@ -39,9 +39,13 @@ Detalle de Empleado
             <p><b>Permisos del Empleado</b></p>
             <hr>
             <div class="col-6">
-            {% for permiso in permisos %}
-                <p>{{permiso.name}}</p>
-            {% endfor %}
+            {% if admin %}
+                <p>{{admin}}</p>
+            {% else %}
+                {% for permiso in permisos %}
+                    <p>{{permiso.name}}</p>
+                {% endfor %}
+            {% endif %}
         </section>
     </div>
     

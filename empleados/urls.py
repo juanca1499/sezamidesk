@@ -13,4 +13,5 @@ urlpatterns = [
     path('modificar/<int:pk>', views.ModificarEmpleado.as_view(), name='modificar'),
     path('grupo/<int:pk>', views.seleccionaGrupo, name='grupo'),
     path('seleccionar-permisos/', views.seleccionarPermisos, name='seleccionar-permisos'),
+    path('login/', views.EmpleadoLogin.as_view(), name='login'),
 ]
