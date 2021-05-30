@@ -5,7 +5,18 @@
     Localización de Personas
 {% endblock %}
 
-{% block encabezado %} Lista de Personas a Localizar {% endblock %}
+{% block encabezado %} 
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                Lista de Personas a Localizar 
+            </div>
+            <div class="col-2">
+                <a class="btn btn-primary btn-lg" href="{% url 'localizacion_personas:nuevo' %}">Nuevo Registro</a>
+            </div>
+        </div>
+    </div> 
+{% endblock %}
 {% block contenido %}
     <div class="card mb-4">
         <div class="card-header">
@@ -54,6 +65,7 @@
                             <td>
                                 <a class="btn btn-outline-primary btn-sm" href="{% url 'localizacion_personas:detalle' persona.curp %}">Ver más</a>
                                 <a class="btn btn-outline-primary btn-sm" href="{% url 'localizacion_personas:editar' persona.curp %}">Editar</a>
+                                <button onclick="muestraModal('{% url 'localizacion_personas:eliminar' persona.curp %}')" type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
                             </td>
                         </tr>
                     {% endfor %}
@@ -61,4 +73,28 @@
             </table>
         </div>
     </div>
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminando Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalCuerpo">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <form id="formEliminar" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Sí</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/modales.js' %}"></script>
 {% endblock %}

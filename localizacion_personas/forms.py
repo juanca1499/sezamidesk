@@ -6,6 +6,10 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 class PersonaDesaparecidaForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PersonaDesaparecidaForm, self).__init__(*args, **kwargs)
+        self.fields['estatus'].initial = 1
+
     fecha_nacimiento_desaparecido = forms.DateField(widget=DateInput())
     fecha_desaparicion = forms.DateField(widget=DateInput())
     class Meta:

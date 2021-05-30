@@ -21,13 +21,13 @@ class AgregarPersonaDesaparecida(CreateView):
 class EditarPersonaDesaparecida(UpdateView):
     model = PersonaDesaparecida
     form_class = PersonaDesaparecidaForm
-    extra_context = {'etiqueta':'Actualizar datos','boton':'Guardar'}
+    extra_context = {'etiqueta':'Editar','boton':'Guardar'}
     success_url = reverse_lazy('localizacion_personas:lista')
 
 class DetallePersonaDesaparecida(DetailView):
     model = PersonaDesaparecida
-    template_name = 'localizacion_personas/personadesaparecida_detail.html'
+    context_object_name = "persona"
 
-    def get(self, request, *args, **kwargs):
-        persona = get_object_or_404(PersonaDesaparecida,curp=kwargs['curp'])
-        return render(request, self.template_name, {'persona': persona})
+class EliminarPersonaDesaparecida(DeleteView):
+    model = PersonaDesaparecida
+    success_url = reverse_lazy('localizacion_personas:lista')
