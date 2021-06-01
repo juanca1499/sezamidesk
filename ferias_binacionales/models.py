@@ -25,7 +25,7 @@ class DefensoriaPublica(models.Model):
     num_telefonico = models.IntegerField(verbose_name="Número de teléfono", validators=[RegexValidator('^\+?1?\d{9,15}$')])
     email = models.EmailField(verbose_name="Correo electrónico")
 
-class LicenciaConduncir(models.Model):
+class LicenciaConducir(models.Model):
     nombre = models.CharField(verbose_name="Nombre",max_length=50)
     ap_paterno = models.CharField(verbose_name="Apellido Paterno", max_length=50)
     ap_materno = models.CharField(verbose_name="Apelldio Materno", max_length=50)
@@ -62,5 +62,23 @@ class CorreccionActa(models.Model):
     documentos_comprobantes = models.BooleanField(verbose_name="Documentos que comprueben lo solicitado",default=False)
     testimonial = models.BooleanField(verbose_name="Testimonial de 2 personas",default=False)  
     solicitud_firmado = models.BooleanField(verbose_name="Solicitud firmada",default=False)    
-    originasl_copias = models.BooleanField(verbose_name="Original y 2 Copias",default=False)   
+    original_copias = models.BooleanField(verbose_name="Original y 2 Copias",default=False)   
+
+class MandamientosJudiciales(models.Model):
+    nombre = models.CharField(verbose_name="Nombre",max_length=50)
+    ap_paterno = models.CharField(verbose_name="Apellido Paterno", max_length=50)
+    ap_materno = models.CharField(verbose_name="Apelldio Materno", max_length=50)
+    acta_nac_original = models.BooleanField(verbose_name="Acta de Nacimiento Original",default=False) 
+    curp_act = models.BooleanField(verbose_name="CURP Actualizada",default=False) 
+    comprobantE_domicilio = models.BooleanField(verbose_name="Comprobante domicilio",default=False) 
+    pasaporte_vigente = models.BooleanField(verbose_name="Pasaporte vigente",default=False) 
+    matricula_consular = models.BooleanField(verbose_name="Matrícula Consular",default=False) 
+    pago_en_caja_fiscalia = models.BooleanField(verbose_name="Pago que se realiza en caja de fiscalia",default=False) 
+    fotografia= models.BooleanField(verbose_name="1 Fotografía tamaño infantil blanco y negro con fonso blanco",default=False) 
+    ine_familiar = models.BooleanField(verbose_name="INE del familiar directo que va a tramitar el documento",default=False) 
+
+
+
+
+
 

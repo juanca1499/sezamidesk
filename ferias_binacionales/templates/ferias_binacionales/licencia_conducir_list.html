@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block titulo %}
+    Lista de licencias de conducir
+{% endblock titulo %}
+
+{% block encabezado %}
+    <div class="container">
+        <div class="row">
+            <div class="col-11">
+                Lista de licencias de conducir
+            </div>
+            <div class="col-1">
+                <a class="btn btn-success btn-lg" href="#">Nuevo</a>
+            </div>
+        </div>
+    </div>
+{% endblock encabezado %}
+{% block contenido %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Información de licencias de conducir
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Nombre completo</th>
+                    <th>Acta de nacimiento</th>
+                    <th>Comprobante de domicilio en Estados Unidos</th>
+                    <th>Referencia de domicilio en Zacatecas</th>
+                    <th>Estatús de servicio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Nombre completo</th>
+                    <th>Acta de nacimiento</th>
+                    <th>Comprobante de domicilio en Estados Unidos</th>
+                    <th>Referencia de domicilio en Zacatecas</th>
+                    <th>Estatús de servicio</th>
+                    <th>Acciones</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for licencia in object_list %}
+                    <tr>
+                        <td>{{licencia.nombre}} {{licencia.ap_paterno}} {{licencia.ap_materno}}</td>
+                        <td>{{licencia.acta_nacimiento}}</td>
+                        <td>{{licencia.comprobante_dom_eeuu}}</td>
+                        <td>{{licencia.referencia_dom_zac}}</td>
+                        <td>{{licencia.estatus}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'tramites:detalle_tramite' tramite.id %}">Ver más</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock contenido %}
