@@ -13,7 +13,10 @@ def consulta(request):
 
 def detalle(request):
     curp = request.POST['curp']
-    beneficiario = get_object_or_404(Beneficiario,curp=curp)
-    tramite = get_object_or_404(Tramite,beneficiario=beneficiario)
-    return render(request, 'detalle.html',{'beneficiario':beneficiario,
-                                            'tramite':tramite,})
+    try:
+        beneficiario = Beneficiario.objects.get(curp=curp)
+        tramite = Tramite.objects.get(beneficiario=beneficiario)
+        return render(request, 'detalle.html',{'beneficiario':beneficiario,
+                                               'tramite':tramite,})
+    except:
+        return render(request, 'detalle.html')

@@ -10,13 +10,20 @@
 </head>
 <body>
     <h1>Consultar trámite</h1>
-    <h3>Coloque su CURP</h3>
-    <form action="{% url 'consultas:detalle' %}" method="POST">
-        {% csrf_token %}
-        <br>
-        <input class="form-control" type="text" id="curp" name="curp" placeholder="CURP">
-        <br>
-        <button class="btn btn-primary btn-sm" type="submit">Consultar</button>
-    </form>
+    <br>
+    <div class="col-5">
+        <div class="card">
+            <h5 class="card-header">Coloque su CURP</h5>
+            <div class="card-body">
+                <form action="{% url 'consultas:detalle' %}" method="POST">
+                    {% csrf_token %}
+                    <br>
+                    <input class="form-control" type="text" id="curp" name="curp" placeholder="CURP">
+                    <br>
+                    <button class="btn btn-primary btn-sm" type="submit">Consultar</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

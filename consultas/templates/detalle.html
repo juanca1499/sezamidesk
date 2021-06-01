@@ -11,26 +11,29 @@
 <body>
     <h1>Constulta del trámite</h1>
     <br>
-        <div class="row">
-            <div class="col">
-              <div class="card text-center card-custom mx-2 mb-3" >
-                  <div class="card-body">
-                    <h5 class="card-title" >Consultar estado del trámite</h5>
-                    <hr>
-                        <div id="svg_wrap">
-                            <section> 
-                                <p><b>Datos de trámite</b></p>
-                                <hr>
+        <div class="col-5">
+            <div class="card">
+                <h5 class="card-header">Datos del trámite</h5>
+                <div class="card-body">
+                    <div id="svg_wrap">
+                        <section> 
+                            
+                            {% if beneficiario %}
                                 <div class="col">
-                                <p><b>Nombre(s): </b>{{beneficiario.nombre}}</p>
-                                <p><b>Primer apellido: </b> {{beneficiario.primer_apellido}}</p>
-                                <p><b>Segundo apellido: </b> {{beneficiario.segundo_apellido}}</p>
-                                <p><b>CURP: </b>{{beneficiario.curp}}</p>
-                                <p><b>Estado del trámite: </b>{{tramite.estado}}</p>
-                            </section>
-                        </div>
-                  </div>
-              </div>
+                                    <p><b>Nombre(s): </b>{{beneficiario.nombre}}</p>
+                                    <p><b>Primer apellido: </b> {{beneficiario.primer_apellido}}</p>
+                                    <p><b>Segundo apellido: </b> {{beneficiario.segundo_apellido}}</p>
+                                    <p><b>CURP: </b>{{beneficiario.curp}}</p>
+                                    <p><b>Estado del trámite: </b>{{tramite.estado}}</p>
+                                </div>
+                            {% else %}
+                                <div class="col">
+                                    <p><b>Trámite no encontrado. </b></p>
+                                </div>
+                            {% endif %}
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
 </body>
