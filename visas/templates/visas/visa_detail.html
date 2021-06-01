@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Visas
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} Detalle de la Visa {% endblock %}
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos generales del beneficiario</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>CURP: </b>{{visa.tramite.beneficiario.curp}}</p>
+            <p><b>Apellido paterno: </b> {{visa.tramite.beneficiario.primer_apellido}}</p>
+            <p><b>Apellido materno: </b> {{visa.tramite.beneficiario.segundo_apellido}}</p>
+            <p><b>Nombre: </b>{{visa.tramite.beneficiario.nombre}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos del servicio</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Pasaporte: </b>{% if visa.pasaporte == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>Direccion de Estados Unidos: </b>{{visa.direccion_usa}}</p>
+            <p><b>Nombre de la persona a visitar: </b>{{visa.persona_visitar}}</p>
+            <p><b>Teléfono de la persona a visitar: </b>{{visa.tel_persona_visitar}}</p>
+            <p><b>Fecha de nacimiento de la madre: </b>{{visa.fe_nacimiento_madre}}</p>
+            <p><b>Fecha de nacimiento del padre: </b>{{visa.fe_nacimiento_padre}}</p>
+            <p><b>Dirección del lugar de trabajo o escuela: </b>{{visa.dir_trabajo_escuela}}</p>
+            <p><b>Fecha de ingreso al trabajo o escuela: </b>{{visa.fe_ingreso_trabajo_escuela}}</p>
+            <p><b>Ingreso mensual: </b>{{visa.ingreso_mensual}}</p>
+            <p><b>Fecha tentativa de viaje: </b>{{visa.fecha_viaje}}</p>
+            <p><b>Correo: </b>{{visa.correo}}</p>
+            <p><b>Pago: </b>{% if visa.pago == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos del trámite</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Fecha de inicio: </b>{{visa.tramite.fecha_inicio}}</p>
+            <p><b>Fecha de finalización: </b> {{visa.tramite.fecha_fin}}</p>
+            <p><b>Estado: </b> {{visa.tramite.estado}}</p>
+        </section>
+        <a class="btn btn-secondary" href="{% url 'Visas:lista' %}">Regresar</a>
+    </div>    
+{% endblock %}
