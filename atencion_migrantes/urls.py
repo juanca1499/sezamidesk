@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.AtencionMigrantesPrincipal.as_view(), name = 'principal'),
     path("detalle/<int:pk>", views.AtencionMigrantesDetalle.as_view(), name="detalle"),
     path("eliminar/<int:pk>", views.AtencionMigrantesEliminar.as_view(), name="eliminar"),
+    path("nuevo/", views.AtencionMigrantesNuevo.as_view(), name="nuevo"),
 ]
