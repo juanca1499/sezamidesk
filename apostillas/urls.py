@@ -8,5 +8,5 @@ urlpatterns = [
     path('nueva/',views.NuevaApostilla.as_view(),name='nueva'),
     path('detalle/<int:pk>',views.DetalleApostilla.as_view(),name='detalle'),
     path('editar/<int:pk>',views.EditarApostilla.as_view(),name='editar'),
-    path('eliminar/<int:pk>',views.EliminarApostilla.as_view(),name='eliminar')
+    path('eliminar/<int:pk>',views.EliminarApostilla.as_view(),name='eliminar'),
 ]

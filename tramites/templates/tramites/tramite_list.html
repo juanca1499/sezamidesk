@@ -7,9 +7,17 @@
 {% endblock titulo %}
 
 {% block encabezado %}
-    Lista de trámites
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            Lista de trámites
+        </div>
+        <div class="col-2">
+            <a class="btn btn-primary btn-lg" href="{% url 'tramites:pedir_curp' %}">Nuevo Registro</a>
+        </div>
+    </div>
+</div> 
 {% endblock encabezado %}
-
 
 {% block contenido %}
 

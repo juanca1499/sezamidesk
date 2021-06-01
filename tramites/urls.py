@@ -6,7 +6,7 @@ from . import views
 app_name = 'tramites'
 
 urlpatterns = [
-    path('lista/', views.TramiteList.as_view(), name = 'lista_tramite'),
-    path('detalle/<int:pk>', views.TramiteDetail.as_view(), name = 'detalle_tramite'),
+    path('lista/',views.TramiteList.as_view(), name = 'lista_tramite'),
+    path('pedir-curp',views.pedir_curp,name='pedir_curp'),
 ]
 

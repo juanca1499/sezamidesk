@@ -1,8 +1,11 @@
-from django.shortcuts import render
-from .models import Tramite
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView, DetailView, TemplateView, View
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
+from beneficiarios.models import Beneficiario
+from beneficiarios.forms import BeneficiarioForm
+from .models import Tramite
+from .forms import PedirCurpForm
 
 class TramiteList(ListView):
     model = Tramite
@@ -11,6 +14,23 @@ class TramiteList(ListView):
     #def get(self, request, *args, **kwargs):
     #    lista_grupos = Tramite.objects.all()
 
-class TramiteDetail(DetailView):
-    model = Tramite
-    template_name = 'tramites/tramite_detail.html'
+def pedir_curp(request):
+    if request.method == "GET":
+        form = PedirCurpForm()
+        extra_context = {'form':form}
+        return render(request,'tramites/pedir_curp.html',extra_context)
+    elif request.method == "POST":
+        curp = request.POST['curp']
+        cant_beneficiarios = Beneficiario.objects.filter(curp=curp).count()
+        if cant_beneficiarios == 0:
+            beneficiario = Beneficiario()
+            beneficiario.curp = curp
+            form = BeneficiarioForm(instance=beneficiario)
+            return render(request,'beneficiarios/beneficiario_form.html',{'form':form,
+                                                                          'curp':curp})
+        else:
+            beneficiario = Beneficiario.objects.get(curp=curp)
+            form = BeneficiarioForm(instance=beneficiario) 
+            return render(request,'beneficiarios/beneficiario_form.html',{'form':form,
+                                                                          'curp':curp,
+                                                                          'ocultar_curp':True})
