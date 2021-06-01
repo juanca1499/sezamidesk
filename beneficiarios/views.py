@@ -18,3 +18,13 @@ class BeneficiariosEditar(UpdateView):
     form_class = BeneficiarioForm
     extra_context = {'etiqueta':'Actualizar datos del','boton':'Guardar'}
     success_url = reverse_lazy('beneficiarios:principal')
+
+class BeneficiariosCrear(CreateView):
+    model = Beneficiario
+    form_class = BeneficiarioForm
+    extra_context = {'etiqueta':'Registrar nuevo','boton':'Guardar'}
+    success_url = reverse_lazy('beneficiarios:principal')
+
+class BeneficiariosEliminar(DeleteView):
+    model = Beneficiario
+    success_url = reverse_lazy('beneficiarios:principal')
