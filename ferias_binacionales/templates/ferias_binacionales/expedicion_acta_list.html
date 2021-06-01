@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block titulo %}
+    Lista de Expedición de Actas de Nacimiento
+{% endblock titulo %}
+
+{% block encabezado %}
+    <div class="container">
+        <div class="row">
+            <div class="col-11">
+                Lista de Expedición de Actas de Nacimiento
+            </div>
+            <div class="col-1">
+                <a class="btn btn-success btn-lg" href="#">Nuevo</a>
+            </div>
+        </div>
+    </div>
+{% endblock encabezado %}
+{% block contenido %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Información de Expedición de Actas de Nacimiento
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Nombre Solicitante</th>
+                    <th>Nombre de Solicitante</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Nombre completo</th>
+                    <th>nombre_solicitante</th>
+                    <th>Nombre de Solicitante</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for acta in object_list %}
+                    <tr>
+                        <td>{{acta.nombre}} {{acta.ap_paterno}} {{acta.ap_materno}}</td>
+                        <td>{{acta.nombre_solicitante}}</td>
+                        <td>{{acta.fecha_nacimiento}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'tramites:detalle_tramite' tramite.id %}">Ver más</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock contenido %}

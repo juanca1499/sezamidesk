@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block titulo %}
+    Lista de Mandamientos Judiciales
+{% endblock titulo %}
+
+{% block encabezado %}
+    <div class="container">
+        <div class="row">
+            <div class="col-11">
+                Lista de Mandamientos Judiciales
+            </div>
+            <div class="col-1">
+                <a class="btn btn-success btn-lg" href="#">Nuevo</a>
+            </div>
+        </div>
+    </div>
+{% endblock encabezado %}
+{% block contenido %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Información Mandamientos Judiciales
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Nombre completo</th>
+                    <th>Matrícula Consular</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Nombre completo</th>
+                    <th>Matrícula Consular</th>
+                    <th>Acciones</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for mandamientos in object_list %}
+                    <tr>
+                        <td>{{mandamientos.nombre}} {{mandamientos.ap_paterno}} {{mandamientos.ap_materno}}</td>
+                        <td>{{mandamientos.matricula_consular}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'tramites:detalle_tramite' tramite.id %}">Ver más</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock contenido %}
