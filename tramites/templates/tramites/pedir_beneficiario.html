@@ -13,7 +13,7 @@
     {{ etiqueta }} Beneficiario
 {% endblock %}
 {% block contenido %}
-    <form method="post">
+    <form action="{% url 'beneficiarios:' %}" method="post">
         {% csrf_token %}
         <div id="svg_wrap">
         <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->

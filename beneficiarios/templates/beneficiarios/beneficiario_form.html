@@ -28,13 +28,12 @@
             </div>
         </section>
         <div id="prev">
-            <a class="btn btn-secondary" href="{% url 'beneficiarios:detalle' curp %}">Regresar</a>    
+            <a class="btn btn-secondary" href="{% url 'beneficiarios:detalle' beneficiario.curp %}">Regresar</a>    
             <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
         </div>
         <!--Es el botón que va a enviar el formulario (en teoría xd)-->
         <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
         después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
-        
     </form>
     <br>
 {% endblock %}

@@ -22,15 +22,20 @@ def pedir_curp(request):
     elif request.method == "POST":
         curp = request.POST['curp']
         cant_beneficiarios = Beneficiario.objects.filter(curp=curp).count()
+        beneficiario = Beneficiario()
         if cant_beneficiarios == 0:
-            beneficiario = Beneficiario()
             beneficiario.curp = curp
             form = BeneficiarioForm(instance=beneficiario)
-            return render(request,'beneficiarios/beneficiario_form.html',{'form':form,
-                                                                          'curp':curp})
+            return render(request,'beneficiarios/beneficiario_form.html',{'beneficiario':beneficiario,
+                                                                          'form':form,
+                                                                          'curp':curp,
+                                                                          'etiqueta':'Registrar nuevo',
+                                                                          'boton':'Guardar'})
         else:
             beneficiario = Beneficiario.objects.get(curp=curp)
             form = BeneficiarioForm(instance=beneficiario) 
-            return render(request,'beneficiarios/beneficiario_form.html',{'form':form,
+            return render(request,'beneficiarios/beneficiario_form.html',{'beneficiario':beneficiario,
+                                                                          'form':form,
                                                                           'curp':curp,
-                                                                          'ocultar_curp':True})
+                                                                          'etiqueta':'Registrar nuevo',
+                                                                          'boton':'Guardar'})

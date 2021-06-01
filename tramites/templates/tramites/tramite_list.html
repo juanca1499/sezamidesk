@@ -36,7 +36,6 @@
                     <th>Estado del trámite</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tfoot>
@@ -47,7 +46,6 @@
                     <th>Estado</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
-                    <th>Acciones</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -59,9 +57,6 @@
                         <td>{{tramite.estado}}</td>
                         <td>{{tramite.fecha_inicio}}</td>
                         <td>{{tramite.fecha_fin}}</td>
-                        <td>
-                            <a class="btn btn-primary btn-sm" href="{% url 'tramites:detalle_tramite' tramite.id %}">Ver más</a>
-                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
