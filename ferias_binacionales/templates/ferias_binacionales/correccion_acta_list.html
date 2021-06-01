@@ -13,7 +13,7 @@
                 Lista de Correción de Actas
             </div>
             <div class="col-1">
-                <a class="btn btn-success btn-lg" href="#">Nuevo</a>
+                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_correccion_acta' %}">Nuevo</a>
             </div>
         </div>
     </div>
@@ -44,9 +44,15 @@
                 {% for correccion in object_list %}
                     <tr>
                         <td>{{correccion.nombre}} {{correccion.ap_paterno}} {{correccion.ap_materno}}</td>
-                        <td>{{correccion.original_copias}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{% url 'tramites:detalle_tramite' tramite.id %}">Ver más</a>
+                            {% if correccion.original_copias == 1 %}
+                                Entregada
+                            {% else %}
+                                No entregada
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="#">Ver más</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -54,5 +60,5 @@
         </table>
     </div>
 </div>
-
+<a class="btn btn-secondary" href="{% url 'ferias_binacionales:servicios' %}">Regresar a Servicios</a>  
 {% endblock contenido %}

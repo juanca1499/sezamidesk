@@ -13,7 +13,7 @@
                 Lista de Constancia de estudios
             </div>
             <div class="col-1">
-                <a class="btn btn-success btn-lg" href="#">Nuevo</a>
+                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_constancia_estudios' %}">Nuevo</a>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
                         <td>{{constancia.num_telefonico}}</td>
                         <td>{{constancia.email}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{% url 'tramites:detalle_tramite' tramite.id %}">Ver más</a>
+                            <a class="btn btn-primary btn-sm" href="#">Ver más</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -60,5 +60,5 @@
         </table>
     </div>
 </div>
-
+<a class="btn btn-secondary" href="{% url 'ferias_binacionales:servicios' %}">Regresar a Servicios</a>  
 {% endblock contenido %}

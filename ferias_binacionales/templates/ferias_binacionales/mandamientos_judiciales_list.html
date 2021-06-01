@@ -13,7 +13,7 @@
                 Lista de Mandamientos Judiciales
             </div>
             <div class="col-1">
-                <a class="btn btn-success btn-lg" href="#">Nuevo</a>
+                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_mandamiento_judicial' %}">Nuevo</a>
             </div>
         </div>
     </div>
@@ -44,9 +44,15 @@
                 {% for mandamientos in object_list %}
                     <tr>
                         <td>{{mandamientos.nombre}} {{mandamientos.ap_paterno}} {{mandamientos.ap_materno}}</td>
-                        <td>{{mandamientos.matricula_consular}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{% url 'tramites:detalle_tramite' tramite.id %}">Ver más</a>
+                            {% if mandamientos.matricula_consular == 1 %}
+                                Entregada
+                            {% else %}
+                                No entregada
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="#">Ver más</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -54,5 +60,5 @@
         </table>
     </div>
 </div>
-
+<a class="btn btn-secondary" href="{% url 'ferias_binacionales:servicios' %}">Regresar a Servicios</a>  
 {% endblock contenido %}

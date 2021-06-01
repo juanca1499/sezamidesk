@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Mandamientos Judiciales(No Antecedentes Penales)
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} 
+    {% if editar == False %}
+        Nuevos 
+    {% else %}
+        Editar
+    {% endif %}
+        Mandamientos Judiciales(No Antecedentes Penales)
+{% endblock %}
+{% block contenido %}
+{% if messages %}
+    {% for mensaje in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}">
+            {{mensaje}}
+        </div>
+    {% endfor %}
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <div id="svg_wrap">
+    <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
+    </div>
+    <section>
+        <div class="container">
+            <p style="display: inline;">
+                {{form.as_p}}
+            </p>
+        </div>
+    </section>
+    <div id="prev">
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:mandamiento_judicial' %}">Regresar a Mandamientos Judiciales(No Antecedentes Penales)</a>    
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:servicios' %}">Regresar a Servicios</a>    
+        <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
+    </div>
+    <!--Es el botón que va a enviar el formulario (en teoría xd)-->
+    <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
+    después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
+</form>
+<br>
+{% endblock %}
