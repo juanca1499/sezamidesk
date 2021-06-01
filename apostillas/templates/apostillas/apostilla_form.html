@@ -18,57 +18,25 @@
         apostilla
 {% endblock %}
 {% block contenido %}
-    <form method="POST">
-        {% csrf_token %}
-        <div id="svg_wrap">
-            <section>
-                <p><b>Documentos requeridos</b></p>
-                <hr>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            {{form.acta_americana}}
-                            <label class="form-check-label">Acta de nacimiento americana</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            {{form.acta_mexicana}}
-                            <label class="form-check-label">Acta de nacimiento mexicana</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            {{form.identificacion_padres}}
-                            <label class="form-check-label"> Identificacion de los padres</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            {{form.curp}}
-                            <label class="form-check-label">CURP</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            {{form.comprobante_domicilio}}
-                            <label class="form-check-label">Comprobante de domicilio</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            {{form.rfc}}
-                            <label class="form-check-label">RFC</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <a class="btn btn-secondary" href="{% url 'apostillas:lista' %}">Regresar</a>
-                            <input type="submit" class="btn btn-success" id="submit" value="{% if editar == False %}Agregar{% else %}Guardar{% endif %}">
-                        </div>
-                    </div>
-                </div>
-            </section>
+<form method="post">
+    {% csrf_token %}
+    <div id="svg_wrap">
+    <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
+    </div>
+    <section>
+        <div class="container">
+            <p style="display: inline;">
+                {{form.as_p}}
+            </p>
         </div>
-    </form>
+    </section>
+    <div id="prev">
+        <a class="btn btn-secondary" href="{% url 'apostillas:lista' %}">Regresar</a>    
+        <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
+    </div>
+    <!--Es el botón que va a enviar el formulario (en teoría xd)-->
+    <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
+    después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
+</form>
+<br>
 {% endblock %}

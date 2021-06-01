@@ -1,33 +1,25 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 class Visa(models.Model):
+    curp = models.CharField("CURP", primary_key = True, max_length=18, 
+    validators=[RegexValidator('([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)')])
+    # primer_apellido = models.CharField("Primer apellido", max_length=50)
+    # segundo_apellido = models.CharField("Segundo apellido", max_length=50)
+    # nombre = models.CharField("Nombre(s)", max_length=50)
     pasaporte = models.BooleanField('Pasaporte',default=False)
-    direccion_usa_visitar = models.ForeignKey('visas.DireccionEstadosUnidos',on_delete=models.CASCADE)
-    nombre_persona_visitar = models.CharField('Nombre de la persona a visitar',max_length=70)
-    telefono_persona_visitar = models.CharField('Teléfono de la persona a visitar',max_length=10)
-    fecha_nacimiento_madre = models.DateField()
-    fecha_nacimiento_padre = models.DateField()
-    direccion_trabajo_escuela = models.CharField('Dirección del lugar de trabajo o escuela',max_length=80)
-    nombre_direccion_trabajo_escuela = models.CharField('Nombre de la dirección del trabajo o escuela',max_length=35)
-    fecha_ingreso_trabajo_escuela = models.DateField()
-    ingreso_mensual = models.DecimalField(max_digits=10, decimal_places=2)
-    fecha_tentativa_viaje = models.DateField()
+    direccion_usa = models.CharField('Dirección de Estados Unidos',max_length=70)
+    persona_visitar = models.CharField('Nombre de la persona a visitar',max_length=70)
+    tel_persona_visitar = models.CharField('Teléfono de la persona a visitar',max_length=10)
+    fe_nacimiento_madre = models.DateField('Fecha de nacimiento de la madre')
+    fe_nacimiento_padre = models.DateField('Fecha de nacimiento del padre')
+    dir_trabajo_escuela = models.CharField('Dirección del lugar de trabajo o escuela',max_length=80)
+    nom_dir_trabajo_escuela = models.CharField('Nombre de la dirección del trabajo o escuela',max_length=35)
+    fe_ingreso_trabajo_escuela = models.DateField('Fecha de ingreso al trabajo o escuela')
+    ingreso_mensual = models.DecimalField('Ingreso Mensual',max_digits=10, decimal_places=2)
+    fecha_viaje = models.DateField('Fecha tentativa de viaje')
     correo = models.EmailField('Correo electrónico')
-    tramite = models.ForeignKey('tramites.Tramite',verbose_name='Tramite',on_delete=models.CASCADE)
-
-class DireccionEstadosUnidos(models.Model):
-    calle = models.CharField('Calle', max_length=50)
-    numero = models.PositiveIntegerField("Número")
-    ciudad = models.CharField('Ciudad', max_length=40)
-    estado = models.CharField('Estado',max_length=20)  
-    codigo_postal = models.PositiveIntegerField('Código postal')
-    nombre_direccion = models.CharField('Nombre del lugar',max_length=50,blank=True,null=True)
-
-class RedSocial(models.Model):
-    nombre = models.CharField('Red social',max_length=30)
-
-# Aquí se almacenarán las redes sociales del solicitante de VISA.
-class VisaRedSocial(models.Model):
-    visa = models.ForeignKey('visas.Visa',on_delete=models.CASCADE)
-    red_social = models.ForeignKey('visas.RedSocial',on_delete=models.CASCADE)
-    url = models.URLField('Enlace del perfil')
+    red_social = models.URLField('URL de la red social')
+    pago = models.BooleanField(default=False)
+    fecha_cita = models.DateField('Fecha de la cita en el consulado',null=True,blank=True)
+    asesor = models.OneToOneField('empleados.Empleado',null=True, blank=True,on_delete=models.CASCADE)

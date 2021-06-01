@@ -9,17 +9,30 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 from .models import Visa
+from empleados.models import Empleado
+from .forms import VisaForm
 
 class ListaVisa(ListView):
     model = Visa
-    # success_message = "¡Visa editada con éxito!"
+    success_message = "¡Visa editada con éxito!"
     context_object_name = 'visas'
 
 class NuevaVisa(CreateView):
     model = Visa
-    # form_class = ApostillaForm
+    form_class = VisaForm
     extra_context = {'editar': False}
     success_url = reverse_lazy('visas:lista')
+
+    def post(self,request,*args,**kwargs):
+        form = VisaForm(request.POST)
+        if form.is_valid():
+            visa = form.save()
+            asesor = get_object_or_404(Empleado,username=request.user.username)
+            print("******************************************")
+            print(asesor)
+            visa.asesor_id = asesor.id
+            visa.save()
+        return redirect('visas:lista')
 
 class DetalleVisa(DetailView):
     model = Visa
@@ -27,9 +40,9 @@ class DetalleVisa(DetailView):
 
 class EditarVisa(UpdateView,SuccessMessageMixin):
     model = Visa
-    # form_class = ApostillaForm
+    form_class = VisaForm
     success_url = reverse_lazy('visas:lista')
-    # success_message = "Apostilla actualizada con éxito!"
+    success_message = "Visa actualizada con éxito!"
     extra_context = {'editar': True}
 
 class EliminarVisa(DeleteView):
