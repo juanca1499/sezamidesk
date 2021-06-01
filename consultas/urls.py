@@ -5,4 +5,6 @@ app_name = 'consultas'
 
 urlpatterns = [
     path('index/', views.index, name='index'),
+    path('consulta/', views.consulta, name='consulta'),
+    path('detalle/', views.detalle, name='detalle'),
 ]
