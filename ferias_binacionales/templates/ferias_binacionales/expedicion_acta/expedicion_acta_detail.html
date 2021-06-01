@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Expedición de Acta de Nacimiento
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} Detalle de la Expedición de Acta de Nacimiento {% endblock %}
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos generales del solicitante</b></p>
+            <hr>
+            <div class="col-6"> 
+            <p><b>Apellido paterno: </b> {{acta.ap_paterno}}</p>
+            <p><b>Apellido materno: </b> {{acta.ap_materno}}</p>
+            <p><b>Nombre: </b>{{acta.nombre}}</p>
+            <p><b>Fecha de nacimiento: </b>{{acta.fecha_nacimiento}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Información General</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Nombre del solicitante: </b>{{acta.nombre_solicitante}}</p>
+            <p><b>Municipio de registro: </b>{{acta.municipio_registro}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:expedicion_acta' %}">Regresar</a>
+    </div>    
+{% endblock %}

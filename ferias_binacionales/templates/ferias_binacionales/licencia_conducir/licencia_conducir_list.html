@@ -73,7 +73,7 @@
                         </td>
                         <td>{{licencia.estatus}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="#">Ver más</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'ferias_binacionales:detalle_licencia_conducir' licencia.id%}">Ver más</a>
                         </td>
                     </tr>
                 {% endfor %}

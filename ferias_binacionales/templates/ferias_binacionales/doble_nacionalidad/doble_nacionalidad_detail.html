@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Doble Nacionalidad
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} Detalle de la Doble Nacionalidad {% endblock %}
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos generales del solicitante</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Apellido paterno: </b> {{nacionalidad.ap_paterno}}</p>
+            <p><b>Apellido materno: </b> {{nacionalidad.ap_materno}}</p>
+            <p><b>Nombre: </b>{{nacionalidad.nombre}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Información General</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Acta de nacimiento original: </b>{% if nacionalidad.acta_nacimiento_original == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Actas Apostilladas: </b>{% if nacionalidad.actas_apostilladas == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Comprobante de Domicilio: </b>{% if nacionalidad.comprobante_domicilio == 1 %}Entregadas{% else %}No entregadas{% endif %}</p>
+            <p><b>Identificación Oficial: </b>{% if nacionalidad.identificacion_oficial == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Comprobante de domicilio: </b>{% if nacionalidad.comprobante_domicilio == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>Original y 2 copias tamaño Carta: </b>{% if nacionalidad.original_copias == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:doble_nacionalidad' %}">Regresar</a>
+    </div>    
+{% endblock %}

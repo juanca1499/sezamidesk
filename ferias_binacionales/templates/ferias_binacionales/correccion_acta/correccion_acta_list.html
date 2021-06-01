@@ -52,7 +52,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="#">Ver más</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'ferias_binacionales:detalle_correccion_acta' correccion.id %}">Ver más</a>
                         </td>
                     </tr>
                 {% endfor %}

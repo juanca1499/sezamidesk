@@ -3,17 +3,17 @@
 
 
 {% block titulo %}
-    Lista de Expedición de Actas de Nacimiento
+    Lista de Doble Nacionalidad
 {% endblock titulo %}
 
 {% block encabezado %}
     <div class="container">
         <div class="row">
             <div class="col-11">
-                Lista de Expedición de Actas de Nacimiento
+                Lista de Doble Nacionalidad
             </div>
             <div class="col-1">
-                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_expedicion-acta' %}">Nuevo</a>
+                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_doble_nacionalidad' %}">Nuevo</a>
             </div>
         </div>
     </div>
@@ -22,34 +22,37 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Información de Expedición de Actas de Nacimiento
+        Información de Doble Nacionalidad
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
                 <tr>
                     <th>Nombre Completo</th>
-                    <th>Nombre de Solicitante</th>
-                    <th>Fecha de nacimiento</th>
+                    <th>Original y 2 copias</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Nombre completo</th>
-                    <th>Nombre de Solicitante</th>
-                    <th>Fecha de nacimiento</th>
+                    <th>Nombre Completo</th>
+                    <th>Original y 2 copias</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
             <tbody>
-                {% for acta in object_list %}
+                {% for doble_nac in object_list %}
                     <tr>
-                        <td>{{acta.nombre}} {{acta.ap_paterno}} {{acta.ap_materno}}</td>
-                        <td>{{acta.nombre_solicitante}}</td>
-                        <td>{{acta.fecha_nacimiento}}</td>
+                        <td>{{doble_nac.nombre}} {{doble_nac.ap_paterno}} {{doble_nac.ap_materno}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="#">Ver más</a>
+                            {% if doble_nac.original_copias == 1 %}
+                                Entregada
+                            {% else %}
+                                No entregada
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'ferias_binacionales:detalle_doble_nacionalidad' doble_nac.id %}">Ver más</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -57,5 +60,6 @@
         </table>
     </div>
 </div>
+
 <a class="btn btn-secondary" href="{% url 'ferias_binacionales:servicios' %}">Regresar a Servicios</a>  
 {% endblock contenido %}

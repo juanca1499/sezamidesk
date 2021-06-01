@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Defensoría Pública
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} Detalle de la Defensoría Pública {% endblock %}
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos generales del solicitante</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Apellido paterno: </b> {{defensoria.ap_paterno}}</p>
+            <p><b>Apellido materno: </b> {{defensoria.ap_materno}}</p>
+            <p><b>Nombre: </b>{{defensoria.nombre}}</p>
+            <p><b>Localidad: </b>{{defensoria.localidad}}</p>
+            <p><b>Número Telefónico: </b>{{defensoria.num_telefonico}}</p>
+            <p><b>Correo Electrónico: </b>{{defensoria.email}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Información General</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Tramite a Realizar </b>{{ defensoria.tramite_realizar }}</p>
+            <p><b>Fecha: </b>{{defensoria.fecha}} </p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:defensoria_publica' %}">Regresar</a>
+    </div>    
+{% endblock %}
