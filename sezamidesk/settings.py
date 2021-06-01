@@ -120,7 +120,7 @@ USE_TZ = True
 
 
 LOGIN_URL = reverse_lazy('empleados:login')
-LOGIN_REDIRECT_URL = reverse_lazy('tramites:lista_tramites')
+LOGIN_REDIRECT_URL = reverse_lazy('tramites:lista_tramite')
 LOGOUT_REDIRECT_URL = reverse_lazy('empleados:login')
 
 # Static files (CSS, JavaScript, Images)
