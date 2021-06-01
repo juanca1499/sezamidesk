@@ -33,7 +33,6 @@
                         <th>Fecha de desaparición</th>
                         <th>Estatus</th>
                         <th>Nombre del solicitante</th>
-                        <th>Apellidos del solicitante</th>
                         <th>Telefono del solicitante</th>
                         <th>Opciones</th>
                     </tr>
@@ -46,7 +45,6 @@
                         <th>Fecha de desaparición</th>
                         <th>Estatus</th>
                         <th>Nombre del solicitante</th>
-                        <th>Apellidos del solicitante</th>
                         <th>Telefono del solicitante</th>
                         <th>Opciones</th>
                     </tr>
@@ -59,13 +57,12 @@
                             <td>{{persona.apellido_paterno_desaparecido}} {{persona.apellido_materno_desaparecido}}</td>
                             <td>{{persona.fecha_desaparicion}}</td>
                             <td>{{persona.estatus}}</td>
-                            <td>{{persona.nombre_solicitante}}</td>
-                            <td>{{persona.apellido_paterno_solicitante}} {{persona.apellido_materno_solicitante}}</td>
+                            <td>{{persona.nombre_solicitante}} {{persona.apellido_paterno_solicitante}} {{persona.apellido_materno_solicitante}}</td>
                             <td>{{persona.telefono_solicitante}}</td>
                             <td>
-                                <a class="btn btn-outline-primary btn-sm" href="{% url 'localizacion_personas:detalle' persona.curp %}">Ver más</a>
-                                <a class="btn btn-outline-primary btn-sm" href="{% url 'localizacion_personas:editar' persona.curp %}">Editar</a>
-                                <button onclick="muestraModal('{% url 'localizacion_personas:eliminar' persona.curp %}')" type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
+                                <a class="btn btn-secondary btn-sm" href="{% url 'localizacion_personas:detalle' persona.curp %}">Ver más</a>
+                                <a class="btn btn-warning btn-sm" href="{% url 'localizacion_personas:editar' persona.curp %}">Editar</a>
+                                <button onclick="muestraModal('{% url 'localizacion_personas:eliminar' persona.curp %}')" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
                             </td>
                         </tr>
                     {% endfor %}
