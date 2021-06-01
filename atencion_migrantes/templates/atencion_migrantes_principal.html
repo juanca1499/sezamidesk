@@ -13,7 +13,55 @@ Atención a migrantes deportados y repatriados
     
 {% block contenido %}
 
-    
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        DataTable Example
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>CURP</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Nombre(s)</th>
+                    <th>Localidades</th>
+                    <th>Estado del trámite</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>CURP</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Nombre(s)</th>
+                    <th>Localidad</th>
+                    <th>Estado del trámite</th>
+                    <th>Acciones</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for atencion_migrantes in object_list %}
+                <tr>
+                    <td>{{atencion_migrantes.tramite.beneficiario.curp}}</td>
+                    <td>{{atencion_migrantes.tramite.beneficiario.primer_apellido}}</td>
+                    <td>{{atencion_migrantes.tramite.beneficiario.segundo_apellido}}</td>
+                    <td>{{atencion_migrantes.tramite.beneficiario.nombre}}</td>
+                    <td>{{atencion_migrantes.tramite.beneficiario.asentamiento.localidad}}</td>
+                    <td>{{atencion_migrantes.tramite.beneficiario.grupo_vulnerable}}</td>
+                    <td>
+                        <a href="{% url 'atencion_migrantes:detalle' atencion_migrantes.id %}" class = "btn btn-primary btn-sm">Ver más</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                    
+            </tbody>
+        </table>
+    </div>
+</div>
+
     
 {% endblock contenido %}
     

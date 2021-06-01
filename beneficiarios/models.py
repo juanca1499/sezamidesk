@@ -40,7 +40,6 @@ class Beneficiario(models.Model):
     discapacidad = models.ForeignKey("catalogos.Discapacidad", verbose_name="Discapacidad", on_delete=models.CASCADE)
     grupo_vulnerable = models.ForeignKey("catalogos.GrupoVulnerable", verbose_name="Grupo vulnerable", on_delete=models.CASCADE)
     
-    
 
     # foreign keys
        

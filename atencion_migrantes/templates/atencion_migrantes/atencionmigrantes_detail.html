@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Detalles del trámite de atención a migrantes
+{% endblock titulo%}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} 
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                Detalles del trámite de atención a migrantes 
+            </div>
+            <div class="col-1">
+                <a  class="btn btn-primary" href = "" style="display: inline;">Editar</a>
+            </div>
+            <div class="col-1">
+                <button onclick="muestraModal('{% url 'atencion_migrantes:eliminar' atencionmigrantes.id %}')" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal">Eliminar</button>
+            </div>
+        </div>
+    </div>
+{% endblock encabezado %}
+
+{% block contenido %}
+<div id="svg_wrap">
+    <section> <!-- Para agregar un paso más al formulario se utiliza esta tag y dentro de ella
+        los controles de formulario según se necesite  -->
+        <p><b>Datos personales</b></p>
+        <hr>
+        <div class="col-6">
+            <p><b>CURP: </b>{{atencionmigrantes.tramite.beneficiario.curp}}</p>
+            <p><b>Apellido paterno: </b> {{atencionmigrantes.tramite.beneficiario.primer_apellido}}</p>
+            <p><b>Apellido materno: </b> {{atencionmigrantes.tramite.beneficiario.segundo_apellido}}</p>
+            <p><b>Nombre: </b>{{atencionmigrantes.tramite.beneficiario.nombre}}</p>
+            </p>
+        </div>
+    </section>
+    <section> <!-- Para agregar un paso más al formulario se utiliza esta tag y dentro de ella
+        los controles de formulario según se necesite  -->
+        <p><b>Estado de los documentos</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Identificación Oficial: </b>{% if atencionmigrantes.identificacion_oficial == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>CURP: </b>{% if atencionmigrantes.curp == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>RFC: </b>{% if atencionmigrantes.rfc == 1 %}Entregadas{% else %}No entregadas{% endif %}</p>
+            <p><b>Solicitud del gobernador: </b>{% if atencionmigrantes.solicitud_gobernador == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Hoja de deportación: </b>{% if atencionmigrantes.hoja_deportacion == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>Comprobante de domicilio: </b>{% if atencionmigrantes.comprobante_domicilio == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>Acta de nacimiento: </b>{% if atencionmigrantes.acta_nacimiento == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            </p>
+        </div>
+    </section>
+    <section> <!-- Para agregar un paso más al formulario se utiliza esta tag y dentro de ella
+        los controles de formulario según se necesite  -->
+        <p><b>Estado del trámite</b></p>
+            <hr>
+        <div class="col-6">
+            <p><b>Estado del trámite: </b>{{atencionmigrantes.tramite.estado}}</p>
+            <p><b>Fecha de inicio del trámite: </b>{{atencionmigrantes.tramite.fecha_inicio}}</p>
+            <p><b>Fecha de finalización del trámite: </b>{{atencionmigrantes.tramite.fecha_fin}}</p>
+        </div>
+    </section>
+</div>
+        
+    <!-- <div id="prev"><a  class="btn btn-secondary" href = "{% url 'beneficiarios:principal' %}">Regresar</a></div>
+    <div id="next"><a  class="btn btn-primary" href = "{% url 'beneficiarios:principal' %}">Editar</a></div> -->
+
+    <!--Es el botón que va a enviar el formulario (en teoría xd)-->
+    <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
+    después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
+<br>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminando beneficiario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalCuerpo">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <form id="formEliminar" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Sí</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/modales.js' %}"></script>
+{% endblock %}
