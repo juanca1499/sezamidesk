@@ -7,27 +7,31 @@ from django.urls import reverse_lazy
 from .models import PersonaDesaparecida
 from .forms import PersonaDesaparecidaForm
 
-class ListaPersonasDesaparecidas(ListView):
+class ListaPersonasDesaparecidas(PermissionRequiredMixin,ListView):
+    permission_required = 'localizacion_personas.view_personadesaparecida'
     model = PersonaDesaparecida
     context_object_name = 'personas'
-    extra_context = {'lp_lista':True}
 
-class AgregarPersonaDesaparecida(CreateView):
+class AgregarPersonaDesaparecida(PermissionRequiredMixin,CreateView):
+    permission_required = 'localizacion_personas.add_personadesaparecida'
     model = PersonaDesaparecida
     form_class = PersonaDesaparecidaForm
-    extra_context = {'etiqueta':'Registrar','boton':'Registrar', 'lp_nuevo':True}
+    extra_context = {'etiqueta':'Registrar','boton':'Registrar'}
     success_url = reverse_lazy('localizacion_personas:lista')
 
-class EditarPersonaDesaparecida(UpdateView):
+class EditarPersonaDesaparecida(PermissionRequiredMixin,UpdateView):
+    permission_required = 'localizacion_personas.change_personadesaparecida'
     model = PersonaDesaparecida
     form_class = PersonaDesaparecidaForm
     extra_context = {'etiqueta':'Editar','boton':'Guardar'}
     success_url = reverse_lazy('localizacion_personas:lista')
 
-class DetallePersonaDesaparecida(DetailView):
+class DetallePersonaDesaparecida(PermissionRequiredMixin,DetailView):
+    permission_required = 'localizacion_personas.view_personadesaparecida'
     model = PersonaDesaparecida
     context_object_name = "persona"
 
-class EliminarPersonaDesaparecida(DeleteView):
+class EliminarPersonaDesaparecida(PermissionRequiredMixin,DeleteView):
+    permission_required = 'localizacion_personas.delete_personadesaparecida'
     model = PersonaDesaparecida
     success_url = reverse_lazy('localizacion_personas:lista')
