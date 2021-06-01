@@ -15,4 +15,5 @@ urlpatterns = [
     path('seleccionar-permisos/', views.seleccionarPermisos, name='seleccionar-permisos'),
     path('login/', views.EmpleadoLogin.as_view(), name='login'),
     path('logout/', views.EmpleadoLogout.as_view(), name='logout'),
+    path('perfil/', views.verPerfil, name='perfil'),
 ]

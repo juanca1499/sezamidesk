@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView,LogoutView
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 
 from empleados.models import Empleado,Grupo
@@ -51,6 +51,21 @@ class EmpleadoLogin(LoginView):
 
 class EmpleadoLogout(LogoutView):
     template_name='login.html'
+
+@login_required
+def verPerfil(request):
+    empleado = get_object_or_404(Empleado,pk=request.user.id)
+    permisos = empleado.groups.all()
+    grupo = get_object_or_404(Grupo,grupo=empleado.grupo)
+    admin ='El empleado es super administrador'
+
+    if (grupo.grupo == "Super Admin"):
+        return render(request, 'perfil.html',{'permisos':permisos,
+                                            'empleado':empleado,
+                                            'admin':admin})    
+
+    return render(request, 'perfil.html',{'permisos':permisos,
+                                            'empleado':empleado,})
 
 @login_required
 @permission_required('empleados.add_empleado', raise_exception=True)
