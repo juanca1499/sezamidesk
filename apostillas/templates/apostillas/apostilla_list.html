@@ -8,14 +8,14 @@
 {% block encabezado %} 
     <div class="container">
         <div class="row">
-            <div class="col-11">
+            <div class="col-10">
                 Lista de trámites de apostilla 
             </div>
-            <div class="col-1">
-                <a class="btn btn-success btn-lg" href="{% url 'apostillas:nueva' %}">Nuevo</a>
+            <div class="col-2">
+                <a class="btn btn-primary btn-lg" href="{% url 'apostillas:nueva' %}">Nuevo Registro</a>
             </div>
         </div>
-    </div>
+    </div> 
 {% endblock %}
 {% block contenido %}
     {% if messages %}
