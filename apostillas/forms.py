@@ -2,7 +2,9 @@ from django import forms
 from .models import Apostilla
 from django.contrib.auth.forms import UserCreationForm
 
-class ApostillaForm(forms.ModelForm):   
+from beneficiarios.forms import BeneficiarioForm
+
+class ApostillaForm(BeneficiarioForm,forms.ModelForm):   
     class Meta:
         model = Apostilla
         exclude = ('estado','fecha_inicio','fecha_fin')
