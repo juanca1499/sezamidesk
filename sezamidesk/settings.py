@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'localizacion_personas',
     'tramites',
     'visas',
-    'ferias_binacionales'
+    'ferias_binacionales',
+    'consultas'
 ]
 
 MIDDLEWARE = [
