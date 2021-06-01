@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Licencia de Conducir
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} Detalle de la Licencia de Conducir {% endblock %}
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos generales del solicitante</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Apellido paterno: </b> {{licencia.ap_paterno}}</p>
+            <p><b>Apellido materno: </b> {{licencia.ap_materno}}</p>
+            <p><b>Nombre: </b>{{licencia.nombre}}</p>
+            <p><b>Tipo de Sangre: </b>{{licencia.tipo_sangre}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Información General</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Acta de nacimiento: </b>{% if licencia.acta_nacimiento == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Comprobante de domicilio en Estados Unidos: </b>{% if licencia.comprobante_dom_eeuu == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Domicilio de referencia en el Estado de Zacatecas: </b>{% if licencia.referencia_dom_zac == 1 %}Entregadas{% else %}No entregadas{% endif %}</p>
+            <p><b>Fotografía: </b>{% if licencia.fotografia == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Identificación oficial: </b>{% if licencia.identificacion_oficial == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>Estatus: </b>{{licencia.estatus}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:licencia_conducir' %}">Regresar</a>
+    </div>    
+{% endblock %}

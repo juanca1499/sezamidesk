@@ -3,17 +3,17 @@
 
 
 {% block titulo %}
-    Lista de trámites en defensoria publica
+    Lista de Expedición de Actas de Nacimiento
 {% endblock titulo %}
 
 {% block encabezado %}
     <div class="container">
         <div class="row">
             <div class="col-11">
-                Lista de trámites en defensoria publica
+                Lista de Expedición de Actas de Nacimiento
             </div>
             <div class="col-1">
-                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_defensoria_publica' %}">Nuevo</a>
+                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_expedicion-acta' %}">Nuevo</a>
             </div>
         </div>
     </div>
@@ -22,40 +22,34 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Información de trámites en defensoria publica
+        Información de Expedición de Actas de Nacimiento
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>Nombre completo</th>
-                    <th>Tramite a realizar</th>
-                    <th>Fecha</th>
-                    <th>Número de teléfono</th>
-                    <th>Correo electrónico</th>
+                    <th>Nombre Completo</th>
+                    <th>Nombre de Solicitante</th>
+                    <th>Fecha de nacimiento</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>Nombre completo</th>
-                    <th>Tramite a realizar</th>
-                    <th>Fecha</th>
-                    <th>Número de teléfono</th>
-                    <th>Correo electrónico</th>
+                    <th>Nombre de Solicitante</th>
+                    <th>Fecha de nacimiento</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
             <tbody>
-                {% for tramite in object_list %}
+                {% for acta in object_list %}
                     <tr>
-                        <td>{{tramite.nombre}} {{tramite.ap_paterno}} {{tramite.ap_materno}}</td>
-                        <td>{{tramite.tramite_realizar}}</td>
-                        <td>{{tramite.fecha}}</td>
-                        <td>{{tramite.num_telefonico}}</td>
-                        <td>{{tramite.email}}</td>
+                        <td>{{acta.nombre}} {{acta.ap_paterno}} {{acta.ap_materno}}</td>
+                        <td>{{acta.nombre_solicitante}}</td>
+                        <td>{{acta.fecha_nacimiento}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="#">Ver más</a>
+                            <a class="btn btn-primary btn-sm" href="{% url 'ferias_binacionales:detalle_expedicion-acta' acta.id %}">Ver más</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -64,5 +58,4 @@
     </div>
 </div>
 <a class="btn btn-secondary" href="{% url 'ferias_binacionales:servicios' %}">Regresar a Servicios</a>  
-
 {% endblock contenido %}

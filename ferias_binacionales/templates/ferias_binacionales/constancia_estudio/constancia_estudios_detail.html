@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Constancia de Estudio
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} Detalle de la Constancia de Estudio {% endblock %}
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos generales del solicitante</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>CURP: </b>{{constancia.curp}}</p>
+            <p><b>Apellido paterno: </b> {{constancia.ap_paterno}}</p>
+            <p><b>Apellido materno: </b> {{constancia.ap_materno}}</p>
+            <p><b>Nombre: </b>{{constancia.nombre}}</p>
+            <p><b>Número Telefónico: </b>{{constancia.num_telefonico}}</p>
+            <p><b>Correo Electrónico: </b>{{constancia.email}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Información General</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Nivel de Estudios: </b>{{ constancia.nivel_estudios }}</p>
+            <p><b>Nombre de la escuela: </b>{{constancia.nombre_escuela}} </p>
+            <p><b>Localidad: </b>{{ constancia.localidad }} </p>
+            <p><b>Año aproximado que se cursó el grado: </b>{{constancia.anio_aprox}}</p>
+            <p><b>Fotografia: </b>{% if constancia.fotografia == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:constancia_estudios' %}">Regresar</a>
+    </div>    
+{% endblock %}

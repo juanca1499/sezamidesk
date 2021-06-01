@@ -3,17 +3,17 @@
 
 
 {% block titulo %}
-    Lista de Constancias de Estudio
+    Lista de Mandamientos Judiciales
 {% endblock titulo %}
 
 {% block encabezado %}
     <div class="container">
         <div class="row">
             <div class="col-11">
-                Lista de Constancia de estudios
+                Lista de Mandamientos Judiciales
             </div>
             <div class="col-1">
-                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_constancia_estudios' %}">Nuevo</a>
+                <a class="btn btn-success btn-lg" href="{% url 'ferias_binacionales:nuevo_mandamiento_judicial' %}">Nuevo</a>
             </div>
         </div>
     </div>
@@ -22,37 +22,37 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Información de constancias
+        Información Mandamientos Judiciales
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
                 <tr>
                     <th>Nombre completo</th>
-                    <th>CURP</th>
-                    <th>Número de teléfono</th>
-                    <th>Correo electrónico</th>
+                    <th>Matrícula Consular</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Nombre</th>
-                    <th>CURP</th>
-                    <th>Número de teléfono</th>
-                    <th>Correo electrónico</th>
+                    <th>Nombre completo</th>
+                    <th>Matrícula Consular</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
             <tbody>
-                {% for constancia in object_list %}
+                {% for mandamientos in object_list %}
                     <tr>
-                        <td>{{constancia.nombre}} {{constancia.ap_paterno}} {{constancia.ap_materno}}</td>
-                        <td>{{constancia.curp}}</td>
-                        <td>{{constancia.num_telefonico}}</td>
-                        <td>{{constancia.email}}</td>
+                        <td>{{mandamientos.nombre}} {{mandamientos.ap_paterno}} {{mandamientos.ap_materno}}</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="#">Ver más</a>
+                            {% if mandamientos.matricula_consular == 1 %}
+                                Entregada
+                            {% else %}
+                                No entregada
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'ferias_binacionales:detalle_mandamiento_judicial' mandamientos.id %}">Ver más</a>
                         </td>
                     </tr>
                 {% endfor %}

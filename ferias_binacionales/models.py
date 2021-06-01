@@ -50,7 +50,8 @@ class DobleNacionalidad(models.Model):
     ap_materno = models.CharField(verbose_name="Apellido Materno", max_length=50)
     acta_nacimiento_original = models.BooleanField(verbose_name="Acta de Nacimiento Original",default=False)
     actas_apostilladas = models.BooleanField(verbose_name="Actas apostilladas",default=False)
-    comprobante_domicilio = models.BooleanField(verbose_name="Identificación Oficial Padres",default=False)
+    comprobante_domicilio = models.BooleanField(verbose_name="Comprobante de domicilio",default=False)
+    identificacion_oficial = models.BooleanField(verbose_name="Identificación Oficial Padres",default=False)
     original_copias = models.BooleanField(verbose_name="Original y 2 Copias",default=False)    
 
 class CorreccionActa(models.Model):

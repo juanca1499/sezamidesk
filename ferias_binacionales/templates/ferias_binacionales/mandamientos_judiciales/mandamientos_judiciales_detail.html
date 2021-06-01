@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Constancia de Estudio
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} Detalle de la Constancia de Estudio {% endblock %}
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos generales del solicitante</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Apellido paterno: </b> {{mand_jud.ap_paterno}}</p>
+            <p><b>Apellido materno: </b> {{mand_jud.ap_materno}}</p>
+            <p><b>Nombre: </b>{{mand_jud.nombre}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Información General</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Acta de nacimiento Original: </b>{% if mand_jud.acta_nac_original == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>CURP Actualizada: </b>{% if mand_jud.curp_act == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Comprobante de Domicilio </b>{% if mand_jud.comprobante_domicilio == 1 %}Entregadas{% else %}No entregadas{% endif %}</p>
+            <p><b>Pasaporte Vigente: </b>{% if mand_jud.pasaporte_vigente == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Matricula Consular: </b>{% if mand_jud.matricula_consular == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>Pago que se Realiza en Caja de Fiscalia: </b>{% if mand_jud.pago_en_caja_fiscalia == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>1 Fotografía Tamaño Infantil Blanco y Negro con Fondo Blanco: </b>{% if mand_jud.fotografia == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+            <p><b>INE del Familiar Directo Que Va a Tramitar el Documento: </b>{% if mand_jud.ine_familiar == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+  
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:mandamiento_judicial' %}">Regresar</a>
+    </div>    
+{% endblock %}

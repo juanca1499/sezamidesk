@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Corrección de Acta
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block encabezado %} Detalle de la Corrección de Acta {% endblock %}
+{% block contenido %}
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Datos generales del solicitante</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Apellido paterno: </b> {{correccion.ap_paterno}}</p>
+            <p><b>Apellido materno: </b> {{correccion.ap_materno}}</p>
+            <p><b>Nombre: </b>{{correccion.nombre}}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <section> 
+            <p><b>Información General</b></p>
+            <hr>
+            <div class="col-6">
+            <p><b>Acta a corregir: </b>{% if correccion.acta_a_corregir == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Documentos que comprueben lo solicitado: </b>{% if correccion.documentos_comprobantes == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Testimonial de 2 Personas: </b>{% if correccion.testimonial == 1 %}Entregadas{% else %}No entregadas{% endif %}</p>
+            <p><b>Solicitud firmada: </b>{% if correccion.solicitud_firmado == 1 %}Entregada{% else %}No entregada{% endif %}</p>
+            <p><b>Original y 2 Copias Tamaño Carta: </b>{% if correccion.original_copias == 1 %}Entregado{% else %}No entregado{% endif %}</p>
+        </section>
+    </div>    
+    <div id="svg_wrap">
+        <a class="btn btn-secondary" href="{% url 'ferias_binacionales:correccion_acta' %}">Regresar</a>
+    </div>    
+{% endblock %}
