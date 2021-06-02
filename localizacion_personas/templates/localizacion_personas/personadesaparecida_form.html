@@ -13,7 +13,7 @@
     {{ etiqueta }} Persona desaparecida
 {% endblock %}
 {% block contenido %}
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
         <div id="svg_wrap">
         <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
@@ -25,11 +25,13 @@
                 </p>
             </div>
         </section>
-        <button type="submit" class="btn btn-primary">{{boton}}</button>
+        <div id="prev">
+            <a class="btn btn-secondary" href="{% url 'localizacion_personas:lista' %}">Regresar</a>    
+            <button type="submit" class="btn btn-primary" id="submit">{{boton}}</button>
+        </div>
     </form>
 {% endblock %}
 
 {% block js %}
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src="{% static 'js/formulario.js' %}"></script>
 {% endblock %}
