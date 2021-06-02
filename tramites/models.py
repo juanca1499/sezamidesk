@@ -6,7 +6,7 @@ class Tramite(models.Model):
     empleado = models.ForeignKey("empleados.Empleado",verbose_name='Empleado',on_delete=models.CASCADE)
     estado = models.ForeignKey("tramites.EstadoTramite",verbose_name='Estado',on_delete=models.CASCADE)
     fecha_inicio = models.DateField('Fecha de Inicio',auto_now_add=True)
-    fecha_fin = models.DateField('Fecha de fin',auto_now=True)
+    fecha_fin = models.DateField('Fecha de fin',null = True)
 
 class EstadoTramite(models.Model):
     estado = models.CharField("Estado de tramite",max_length=10)
