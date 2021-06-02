@@ -4,10 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 
 from beneficiarios.forms import BeneficiarioForm
 
-class ApostillaForm(BeneficiarioForm,forms.ModelForm):   
+class ApostillaForm(forms.ModelForm):   
     class Meta:
         model = Apostilla
-        exclude = ('estado','fecha_inicio','fecha_fin')
+        fields = ('acta_americana','acta_mexicana','identificacion_padres','curp','comprobante_domicilio','rfc')
         widgets = {                   
             # Propios de la apostilla            
             'acta_americana':forms.CheckboxInput(attrs={'class':'form-check-input'}),
