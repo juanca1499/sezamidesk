@@ -81,7 +81,8 @@ class DobleNacionalidadForm(forms.ModelForm):
             'ap_materno': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Apellido Materno'}),   
             'acta_nacimiento_original':forms.CheckboxInput(attrs={'class':'form-check-input'}),
             'actas_apostilladas':forms.CheckboxInput(attrs={'class':'form-check-input'}),
-            'comprobante_domicilio':forms.CheckboxInput(attrs={'class':'form-check-input'}),          
+            'comprobante_domicilio':forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'identificacion_oficial':forms.CheckboxInput(attrs={'class':'form-check-input'}),          
             'original_copias': forms.CheckboxInput(attrs={'class':'form-check-input'}),  
         } 
 
