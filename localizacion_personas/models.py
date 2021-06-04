@@ -1,8 +1,15 @@
 from django.db import models
 from django.core.validators import RegexValidator
 
+def autoincremento_folio(): 
+    incremento = PersonaDesaparecida.objects.all().order_by('folio').last()
+    if not incremento:
+        # Si la tabla no tiene registros regresamos el valor inicial del folio
+        return 1000000000 # 1000000000 Es el valor inicial del folio
+    return incremento.folio + 1
+
 class PersonaDesaparecida(models.Model):
-    curp = models.CharField('CURP',primary_key=True,max_length=18,validators=[RegexValidator('([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)')])
+    folio = models.IntegerField('folio',primary_key=True,default=autoincremento_folio)
     nombre_desaparecido = models.CharField('Nombre',max_length=50)
     apellido_paterno_desaparecido = models.CharField('Apellido paterno',max_length=50)
     apellido_materno_desaparecido = models.CharField('Apellido materno',max_length=50,blank=True, null=True)

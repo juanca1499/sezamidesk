@@ -16,7 +16,7 @@ class PersonaDesaparecidaForm(forms.ModelForm):
         model = PersonaDesaparecida
         fields = '__all__'
         widgets = {
-                'curp':forms.TextInput(attrs={'class':'form-control','placeholder':'CURP'}),
+                'folio':forms.TextInput(attrs={'class':'form-control','placeholder':'Folio'}),
                 'nombre_desaparecido':forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre'}),
                 'apellido_paterno_desaparecido':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido paterno'}),
                 'apellido_materno_desaparecido':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido materno'}),

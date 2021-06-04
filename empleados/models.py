@@ -3,9 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.fields import CharField 
 
 class Empleado(User):
-    segundo_apellido = models.CharField('Apellido materno',max_length=40,default=' ',null=False)
-    alias = models.CharField('Alias',max_length=30,default=' ',null=False)
-    telefono = models.CharField('Teléfono',max_length=15,null=True)
+    segundo_apellido = models.CharField('Segundo apellido',max_length=50)
+    telefono = models.CharField('Teléfono',max_length=10,null=True)
     grupo = models.ForeignKey("empleados.Grupo", verbose_name=("Grupo"), on_delete=models.CASCADE)
 
     def __str__(self):
