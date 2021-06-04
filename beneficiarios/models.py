@@ -11,7 +11,10 @@ class Beneficiario(models.Model):
     nombre = models.CharField("Nombre(s)", max_length=50)
     identificacion = models.ForeignKey("catalogos.IdentificacionOficial", verbose_name="Identificación Oficial", on_delete=models.CASCADE)
     beneficiario_colectivo = models.BooleanField("Es beneficiario colectivo", default = False)
+    direccion = models.ForeignKey("beneficiario.BeneficiarioDireccion", verbose_name="Dirección", on_delete=models.CASCADE)
+    estudio_socioeconomico = models.ForeignKey("beneficiario.EstudioSocioeconomico",verbose_name="Estudio Socioeconómico",on_delete=models.CASCADE)
     
+class BeneficiarioDireccion(models.Model):
     tipo_vialidad = models.ForeignKey("catalogos.TipoVialidad", verbose_name="Tipo de vialidad", on_delete=models.CASCADE)
     nombre_vialidad = models.CharField("Vialidad", max_length=50)
     numero_exterior = models.PositiveIntegerField("Número exterior")
@@ -19,7 +22,8 @@ class Beneficiario(models.Model):
     asentamiento = models.ForeignKey("catalogos.Asentamiento", verbose_name="Asentamiento", on_delete=models.CASCADE)
     entre_vialidades = models.CharField("Entre vialidades", max_length=50, blank = True)
     descripcion_ubicacion = models.TextField("Referencias de ubicación", blank = True)
-    
+
+class EstudioSocioeconomico(models.Model):
     estudio_socioeconomico = models.BooleanField("Presentó estudio socioeconómico")
     estado_civil = models.ForeignKey("catalogos.EstadoCivil", verbose_name="Estado civíl", on_delete=models.CASCADE)
     jefe_familia = models.BooleanField("Es jefe de familia")
@@ -39,12 +43,3 @@ class Beneficiario(models.Model):
     tipo_seguridad_social = models.ForeignKey("catalogos.TipoSeguridadSocial", verbose_name="Tipo de seguridad social", on_delete=models.CASCADE)
     discapacidad = models.ForeignKey("catalogos.Discapacidad", verbose_name="Discapacidad", on_delete=models.CASCADE)
     grupo_vulnerable = models.ForeignKey("catalogos.GrupoVulnerable", verbose_name="Grupo vulnerable", on_delete=models.CASCADE)
-    
-
-    # foreign keys
-       
-
-
-
-
-
