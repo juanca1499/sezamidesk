@@ -2,20 +2,6 @@ from django import forms
 from .models import Beneficiario, BeneficiarioDireccion, EstudioSocioeconomico
 from django.core.validators import RegexValidator
 
-class BeneficiarioForm(forms.ModelForm):
-    class Meta:
-        model = Beneficiario
-        fields = '__all__'
-        # fields = ('curp','primer_apellido', 'segundo_apellido', 'nombre', 'identificacion', 'beneficiario_colectivo')
-        widgets = {
-                'curp':forms.TextInput(attrs={'class':'form-control','placeholder':'CURP'}),
-                'primer_apellido':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido paterno'}),
-                'segundo_apellido':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido materno'}),
-                'nombre':forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre(s)'}),
-                'identificacion':forms.Select(attrs={'class':'form-control'}),
-                'beneficiario_colectivo':forms.CheckboxInput(attrs={'class':'form-check-input', 'id':'beneficiario_colectivo'}), 
-        }
-
 class BeneficiarioDireccionForm(forms.ModelForm):
     class Meta:
         model = BeneficiarioDireccion
@@ -55,4 +41,18 @@ class EstudioSocioeconomicoForm(forms.ModelForm):
             'tipo_seguridad_social':forms.Select(attrs={'class':'form-control'}),
             'discapacidad':forms.Select(attrs={'class':'form-control'}),
             'grupo_vulnerable':forms.Select(attrs={'class':'form-control'}),
+        }
+
+class BeneficiarioForm(forms.ModelForm):
+    class Meta:
+        model = Beneficiario
+        fields = '__all__'
+        # fields = ('curp','primer_apellido', 'segundo_apellido', 'nombre', 'identificacion', 'beneficiario_colectivo')
+        widgets = {
+                'curp':forms.TextInput(attrs={'class':'form-control','placeholder':'CURP'}),
+                'primer_apellido':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido paterno'}),
+                'segundo_apellido':forms.TextInput(attrs={'class':'form-control','placeholder':'Apellido materno'}),
+                'nombre':forms.TextInput(attrs={'class':'form-control','placeholder':'Nombre(s)'}),
+                'identificacion':forms.Select(attrs={'class':'form-control'}),
+                'beneficiario_colectivo':forms.CheckboxInput(attrs={'class':'form-check-input', 'id':'beneficiario_colectivo'}), 
         }

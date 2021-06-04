@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, TemplateView, View
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
-from beneficiarios.models import Beneficiario
-from beneficiarios.forms import BeneficiarioForm
 from .models import Tramite
 from .forms import PedirCurpForm
 

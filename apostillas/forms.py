@@ -2,8 +2,6 @@ from django import forms
 from .models import Apostilla
 from django.contrib.auth.forms import UserCreationForm
 
-from beneficiarios.forms import BeneficiarioForm
-
 class ApostillaForm(forms.ModelForm):   
     class Meta:
         model = Apostilla

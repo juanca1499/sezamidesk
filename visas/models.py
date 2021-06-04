@@ -19,5 +19,5 @@ class Visa(models.Model):
     tramite = models.ForeignKey('tramites.Tramite',verbose_name='Trámite',on_delete=models.CASCADE)
 
 class VisaRedSocial(models.Model):
-    visa = models.ForeignKey('visa.Visa',verbose_name='Trámite de visa', on_delete=models.CASCADE)
+    visa = models.ForeignKey('visas.Visa',verbose_name='Trámite de visa', on_delete=models.CASCADE)
     red_social = models.URLField('URL de la red social')
