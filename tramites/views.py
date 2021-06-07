@@ -3,7 +3,9 @@ from django.views.generic import ListView, DetailView, TemplateView, View
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from .models import Tramite
+from beneficiarios.models import Beneficiario
 from .forms import PedirCurpForm
+from beneficiarios.forms import BeneficiarioForm
 
 class TramiteList(ListView):
     model = Tramite

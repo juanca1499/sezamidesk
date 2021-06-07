@@ -20,7 +20,7 @@
 {% endblock encabezado %}
 
 {% block contenido %}
-    <form method="POST">
+    <form action="{% url app %}" method="POST">
         {% csrf_token %}
         <div id="svg_wrap">
         <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->

@@ -47,6 +47,10 @@ class BeneficiarioForm(forms.ModelForm):
     class Meta:
         model = Beneficiario
         fields = '__all__'
+        exclude = (
+            'direccion',
+            'estudio_socioeconomico',
+        )
         # fields = ('curp','primer_apellido', 'segundo_apellido', 'nombre', 'identificacion', 'beneficiario_colectivo')
         widgets = {
                 'curp':forms.TextInput(attrs={'class':'form-control','placeholder':'CURP'}),

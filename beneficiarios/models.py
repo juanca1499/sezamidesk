@@ -41,5 +41,5 @@ class Beneficiario(models.Model):
     nombre = models.CharField("Nombre(s)", max_length=50)
     identificacion = models.ForeignKey("catalogos.IdentificacionOficial", verbose_name="Identificación Oficial", on_delete=models.CASCADE)
     beneficiario_colectivo = models.BooleanField("Es beneficiario colectivo", default = False)
-    direccion = models.ForeignKey("beneficiarios.BeneficiarioDireccion", verbose_name="Dirección", on_delete=models.CASCADE)
-    estudio_socioeconomico = models.ForeignKey("beneficiarios.EstudioSocioeconomico",verbose_name="Estudio Socioeconómico",on_delete=models.CASCADE)
+    direccion = models.ForeignKey("beneficiarios.BeneficiarioDireccion", verbose_name="Dirección", on_delete=models.CASCADE, null = True)
+    estudio_socioeconomico = models.ForeignKey("beneficiarios.EstudioSocioeconomico",verbose_name="Estudio Socioeconómico",on_delete=models.CASCADE, null=True)

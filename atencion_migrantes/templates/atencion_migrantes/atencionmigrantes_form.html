@@ -13,49 +13,7 @@
     {{ etiqueta }} trámite de atención a migrantes
 {% endblock %}
 {% block contenido %}
-<form action = "{% url 'beneficiarios:crear' %}" method="post">
-    {% csrf_token %}
-    <div id="svg_wrap">
-    <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
-    </div>
-    <section>
-        <div class="container">
-            <p style="display: inline;"><b>Datos del beneficiario</b></p>
-            <hr>
-            <p style="display: inline;">
-                {{beneficiario_form.as_p}}
-            </p>
-        </div>
-    </section>
-    <div id="prev">   
-        <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
-    </div>
-    <!--Es el botón que va a enviar el formulario (en teoría xd)-->
-    <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
-    después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
-</form>
-<br>
-<form action = "{% url 'beneficiarios:crear' %}" method="post">
-    {% csrf_token %}
-    <div id="svg_wrap">
-    <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
-    </div>
-    <section>
-        <div class="container">
-            <p style="display: inline;"><b>Datos del beneficiario</b></p>
-            <hr>
-            <p style="display: inline;">
-                {{beneficiario_form.as_p}}
-            </p>
-        </div>
-    </section>
-    <div id="prev">   
-        <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
-    </div>
-    <!--Es el botón que va a enviar el formulario (en teoría xd)-->
-    <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
-    después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
-</form>
+<!-- ***************** DATOS DEL TRAMITE *****************  -->
 <form method="post">
     {% csrf_token %}
     <div id="svg_wrap">
@@ -74,10 +32,46 @@
         <a class="btn btn-secondary" href="{% url 'atencion_migrantes:principal' %}">Regresar</a>    
         <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
     </div>
-    <!--Es el botón que va a enviar el formulario (en teoría xd)-->
-    <!--No olviden poner las validaciones del de este lado, se tendrán que poner a mano a menos de que
-    después encuentre alguna forma de ponerlas con ayuda de Django y utilizando este mismo código-->
-    
+    <!--Es el botón que va a enviar el formulario-->    
+</form>
+<br>
+<!-- ***************** DATOS DEL ESTUDIO SOCIOECONOMICO *****************  -->
+<form action = "{% url 'beneficiarios:crear' %}" method="post">
+    {% csrf_token %}
+    <div id="svg_wrap">
+    <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
+    </div>
+    <section>
+        <div class="container">
+            <p style="display: inline;"><b>Datos del beneficiario</b></p>
+            <hr>
+            <p style="display: inline;">
+                {{form_beneficiario.as_p}}
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <p style="display: inline;"><b>Dirección de la vivienda</b></p>
+            <hr>
+            <p style="display: inline;">
+                {{form_direccion.as_p}}
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <p style="display: inline;"><b>Estudio socioeconómico</b></p>
+            <hr>
+            <p style="display: inline;">
+                {{form_estudio.as_p}}
+            </p>
+        </div>
+    </section>
+    <div id="prev">   
+        <input type="submit" class="btn btn-primary" id="submit" value="{{boton}}">
+    </div>
+    <!--Es el botón que va a enviar el formulario -->
 </form>
 <br>
 {% endblock %}
