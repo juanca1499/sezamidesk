@@ -23,22 +23,6 @@ class AtencionMigrantesEliminar(DeleteView):
     model = AtencionMigrantes
     success_url = reverse_lazy('atencion_migrantes:principal')
 
-class AtencionMigrantesActualizar(UpdateView):
-    model = AtencionMigrantes
-    form_class = AtencionMigrantesForm
-    form_direccion = BeneficiarioDireccionForm
-    form_estudio = EstudioSocioeconomicoForm
-    template_name = "atencion_migrantes/atencionmigrantes_form.html"
-    form_beneficiario = BeneficiarioForm
-    extra_context = {
-        'etiqueta':'Nuevo', 
-        'boton':'Agregar', 
-        'form_direccion':form_direccion,
-        'form_estudio':form_estudio,
-        'form_beneficiario':form_beneficiario,
-    }
-    success_url = reverse_lazy('atencion_migrantes:principal')
-
 
 class AtencionMigrantesNuevo(CreateView):
     model = AtencionMigrantes
@@ -59,26 +43,45 @@ class AtencionMigrantesNuevo(CreateView):
     # def post(self,request,*args,**kwargs):
     #     return llenar_formulario(request,self.template_name,self.extra_context)
 
+class AtencionMigrantesActualizar(UpdateView):
+    model = AtencionMigrantes
+    form_class = AtencionMigrantesForm
+    form_direccion = BeneficiarioDireccionForm
+    form_estudio = EstudioSocioeconomicoForm
+    template_name = "atencion_migrantes/atencionmigrantes_form.html"
+    form_beneficiario = BeneficiarioForm
+    extra_context = {
+        'etiqueta':'Actualizar', 
+        'boton':'Actualizar', 
+        'form_direccion':form_direccion,
+        'form_estudio':form_estudio,
+        'form_beneficiario':form_beneficiario,
+    }
+    success_url = reverse_lazy('atencion_migrantes:principal')
+
 def verificar_curp(request):
     curp = request.POST['curp']
-    cant_tramites = AtencionMigrantes.objects.filter(curp=curp, tramite__estado_id=1).count() # ...
-
+    tramites_registrados = AtencionMigrantes.objects.filter(curp=curp, tramite__estado_id=1)
+    cant_tramites = tramites_registrados.count() # ...
+    
     if cant_tramites == 0:
         tramite = Tramite()
         tramite.estado_id = 1
         empleado = get_object_or_404(Empleado,username=request.user.username)
         tramite.empleado_id = empleado.id
         tramite.save()
-        tramite = Tramite.objects.latest('fecha_inicio')
+        tramite = Tramite.objects.latest('id')
 
         #tramite especifico
         atencion_migrantes = AtencionMigrantes()
         atencion_migrantes.curp = curp
         atencion_migrantes.tramite_id = tramite.id
         atencion_migrantes.save()
-        return HttpResponseRedirect(reverse_lazy('atencion-migrantes/completar/' + str(tramite.id)))
+        atencion_migrantes = AtencionMigrantes.objects.latest('id')
+        return HttpResponseRedirect('/atencion-migrantes/completar/' + str(atencion_migrantes.id))
     else:
-        pass
+        id_pendiente = tramites_registrados.latest("id").id
+        return HttpResponseRedirect('/atencion-migrantes/completar/' + str(id_pendiente))
 
 
 

@@ -9,7 +9,7 @@ class AtencionMigrantesForm(forms.ModelForm):
         exclude = ('tramite',)
         # fields = ('curp','primer_apellido', 'segundo_apellido', 'nombre', 'identificacion', 'beneficiario_colectivo')
         widgets = {
-            'curp':forms.TextInput(attrs={'class':'form-class', 'disabled':'disabled'}),
+            'curp':forms.TextInput(attrs={'class':'form-control', 'readonly':'readonly'}),
             'identificacion_oficial':forms.CheckboxInput(attrs={'class':'form-check-input', 'id':'identificacion_oficial'}),
             'curp_doc':forms.CheckboxInput(attrs={'class':'form-check-input', 'id':'curp'}),
             'rfc':forms.CheckboxInput(attrs={'class':'form-check-input', 'id':'rfc'}),
