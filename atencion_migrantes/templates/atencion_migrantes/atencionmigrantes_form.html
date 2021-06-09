@@ -41,7 +41,7 @@
     <div id="svg_wrap">
     <!--El javascript inserta aquí la sección correspondiente conforme nos movemos en el formulario  -->
     </div>
-    <section>
+    <section id="seccion_beneficiario">
         <div class="container">
             <p style="display: inline;"><b>Datos del beneficiario</b></p>
             <hr>
@@ -49,7 +49,7 @@
                 {{form_beneficiario.as_p}}
             </p>
         </div>
-    </section>
+    </section id="seccion_vivienda">
     <section>
         <div class="container">
             <p style="display: inline;"><b>Dirección de la vivienda</b></p>
@@ -59,7 +59,7 @@
             </p>
         </div>
     </section>
-    <section>
+    <section id="seccion_estudio">
         <div class="container">
             <p style="display: inline;"><b>Estudio socioeconómico</b></p>
             <hr>
@@ -74,4 +74,7 @@
     <!--Es el botón que va a enviar el formulario -->
 </form>
 <br>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/tramites.js' %}"></script>
 {% endblock %}
