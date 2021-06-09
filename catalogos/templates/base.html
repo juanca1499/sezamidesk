@@ -85,7 +85,7 @@
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
+            <div id="layoutSidenav_content" {% block colorFondo %}{% endblock colorFondo %}>
                 <main>
                     <div class="container-fluid px-4">    
                         <h1 class="mt-4">
@@ -103,10 +103,9 @@
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                            <!-- Se muetra el logo del SEZAMI en la parte inferior derecha de la pagina -->
                             <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <img src="{% static 'media/logo_sezami_2.png' %}" width="200" height="50">
                             </div>
                         </div>
                     </div>
